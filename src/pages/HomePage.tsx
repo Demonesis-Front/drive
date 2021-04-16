@@ -26,7 +26,7 @@ import { LANGUAGES } from "constants/languages";
 import { LeftMenu } from "components/LeftMenu";
 
 export const HomePage = () => {
-	const [popup, setPopUp] = useState<boolean>(true);
+	const [popup, setPopUp] = useState<boolean>(false);
 
 	const showPopUpHandler = () => setPopUp(true);
 	const hidePopUpHandler = () => setPopUp(false);
