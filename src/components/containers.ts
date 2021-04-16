@@ -55,12 +55,12 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 1030px) {
+  @media (max-width: 1200px) {
     width: 456px;
     padding: 13px 32px;
   }
 
-  @media (max-width: 780px) {
+  @media (max-width: 900px) {
     width: 90%;
   }
 
@@ -144,7 +144,7 @@ export const CarouselContainer = styled.div`
   height: 100%;
   width: 100%;
 
-  @media (max-width: 780px) {
+  @media (max-width: 900px) {
     display: none;
   }
 `
@@ -159,7 +159,6 @@ export const SliderContainer = styled.div`
 `
 
 export const SliderTextContainer = styled.div`
-  height: 30%;
   display: flex;
   flex-direction: column;
   justify-content: center;
