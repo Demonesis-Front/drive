@@ -1,7 +1,12 @@
 import React from "react";
+import { Navigation } from "navigation/Navigation";
 
 function App() {
-	return <h1 style={{ textAlign: "center" }}>Drive. First commit</h1>;
+	return (
+		<>
+			<Navigation />
+		</>
+	);
 }
 
 export default App;
