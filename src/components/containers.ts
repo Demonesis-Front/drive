@@ -220,7 +220,7 @@ export const SocialMenuContainer = styled.div`
   z-index: 1001;
   position: absolute;
   left: 65px;
-  top: 50%;
+  top: 300px;
   display: flex;
 
   @media (max-width: 500px) {
