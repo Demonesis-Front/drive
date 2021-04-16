@@ -1,2 +1,0 @@
-(this.webpackJsonpdrive=this.webpackJsonpdrive||[]).push([[0],{10:function(e,t,n){"use strict";n.r(t);var r=n(0),c=n.n(r),i=n(3),s=n.n(i),o=(n(8),n(1));var d=function(){return Object(o.jsx)("h1",{style:{textAlign:"center"},children:"Drive. First commit"})};s.a.render(Object(o.jsx)(c.a.StrictMode,{children:Object(o.jsx)(d,{})}),document.getElementById("root"))},8:function(e,t,n){}},[[10,1,2]]]);
-//# sourceMappingURL=main.3ee56e9b.chunk.js.map
