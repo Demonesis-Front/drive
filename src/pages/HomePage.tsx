@@ -40,7 +40,7 @@ export const HomePage = () => {
 				{popup && <ClosePopUp onClick={hidePopUpHandler} />}
 				{popup && <LeftMenu />}
 
-				<LanguageMenu>{LANGUAGES.eng}</LanguageMenu>
+				<LanguageMenu>{LANGUAGES.rus}</LanguageMenu>
 			</LeftMenuContainer>
 
 			<SectionContainer>
