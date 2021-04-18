@@ -18,12 +18,24 @@ export const Container100 = styled.div`
 `
 
 export const PageContainer = styled.main`
-  height: 100%;
-  display: flex;
-  flex-grow: 1;
+width: 100%;
+display: grid;
+grid-template-columns:  700px 1fr;
+
+  @media (max-width: 1300px) {
+    grid-template-columns:  600px 1fr;
+  }
+
+  @media (max-width: 1030px) {
+    grid-template-columns:  500px 1fr;
+  }
+
+  @media (max-width: 950px) {
+    grid-template-columns:  1fr 0;
+  }
 `
 
-export const LeftMenuContainer = styled.nav`
+export const MenuContainer = styled.nav`
   height: 100%;
   width: 64px;
   background-color: ${COLORS.lightBlack};
@@ -44,64 +56,56 @@ export const SectionContainer = styled.div`
   box-sizing: border-box;
   flex-grow: 1;
 
+  padding: 12px 66px 25px 66px;
 
+  @media (max-width: 1200px) {
+    padding: 12px 32px 25px 32px;
+  }
+
+  @media (max-width: 500px) {
+    padding: 0;
+  }
 `
 
 export const HeaderContainer = styled.header`
   height: 80px;
-  width: 556px;
-  padding: 13px 66px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  @media (max-width: 1200px) {
-    width: 456px;
-    padding: 13px 32px;
-  }
-
-  @media (max-width: 900px) {
-    width: 90%;
-  }
-
   @media (max-width: 500px) {
-    width: 80vw;
-    margin-top: 22px;
-    margin-right: 0;
+    margin-top: 37px;
+    padding-right: 30px;
     display: block;
     text-align: end;
   }
 `
 
 export const OfferContainer = styled.section`
-  padding: 66px;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
 
   @media (max-width: 1030px) {
-    padding: 13px 32px;
   }
 
   @media (max-width: 500px) {
     align-self: center;
-    padding: 0px;
+    /* padding: 0px; */
   }
 `
 
 export const FooterContainer = styled.footer`
   height: 30px;
-  padding: 25px 66px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   @media (max-width: 1030px) {
-    padding: 25px 32px;
   }
 
   @media (max-width: 500px) {
     height: 80px;
-    padding: 0;
     background-color: ${COLORS.black};
     flex-direction: column-reverse;
     align-items: flex-end;
@@ -126,7 +130,7 @@ export const CarouselButtonContainer = styled.div`
     background-color: ${COLORS.greenO2};
   }
 
-  @media (max-width: 1030px) {
+  @media (max-width: 1200px) {
     width: 25px;
   }
 `
@@ -141,13 +145,8 @@ export const IndicatorContainer = styled.div`
 `
 
 export const CarouselContainer = styled.div`
-  height: 100%;
-  width: 100%;
-
-  @media (max-width: 900px) {
-    display: none;
-  }
 `
+
 export const SliderContainer = styled.div`
   height: 100%;
   width: 100%;
@@ -166,8 +165,8 @@ export const SliderTextContainer = styled.div`
   padding-top: 0;
   z-index: 10;
 
-  @media (max-width: 1030px) {
-    padding: 25px 32px;
+  @media (max-width: 1200px) {
+    padding: 25px 66px;
     padding-bottom: 96px;
   }
 `

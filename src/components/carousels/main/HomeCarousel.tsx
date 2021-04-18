@@ -3,7 +3,6 @@ import React from "react";
 import Carousel from "re-carousel";
 import {
 	SliderContainer,
-	CarouselContainer,
 	SliderTextContainer,
 	SliderLinerGradient,
 } from "components/containers";
@@ -15,19 +14,17 @@ import { SliderButton } from "components/buttons/buttons";
 
 export const HomeCarousel = () => {
 	return (
-		<CarouselContainer>
-			<Carousel widgets={[IndicatorDots, Buttons]}>
-				{carouselData.map((slider) => (
-					<SliderContainer key={slider.id} image={slider.image}>
-						<SliderTextContainer>
-							<SliderTitle>{slider.title}</SliderTitle>
-							<SliderSubTitle>{slider.subTitle}</SliderSubTitle>
-							<SliderButton color={slider.buttonColor}>{slider.buttonText}</SliderButton>
-						</SliderTextContainer>
-						<SliderLinerGradient />
-					</SliderContainer>
-				))}
-			</Carousel>
-		</CarouselContainer>
+		<Carousel widgets={[IndicatorDots, Buttons]}>
+			{carouselData.map((slider) => (
+				<SliderContainer key={slider.id} image={slider.image}>
+					<SliderTextContainer>
+						<SliderTitle>{slider.title}</SliderTitle>
+						<SliderSubTitle>{slider.subTitle}</SliderSubTitle>
+						<SliderButton color={slider.buttonColor}>{slider.buttonText}</SliderButton>
+					</SliderTextContainer>
+					<SliderLinerGradient />
+				</SliderContainer>
+			))}
+		</Carousel>
 	);
 };
