@@ -94,9 +94,10 @@ export const SliderTitle = styled.div`
   font-style: normal;
   color: ${COLORS.white};
 
-  @media (max-width: 1030px) {
+  @media (max-width: 1200px) {
     font-size: 30px;
   }
+
 `
 export const SliderSubTitle = styled.div`
   font-size: 24px;
@@ -104,7 +105,7 @@ export const SliderSubTitle = styled.div`
   font-style: normal;
   color: ${COLORS.white};
 
-  @media (max-width: 1030px) {
+  @media (max-width: 1200px) {
     font-size: 18px;
     font-weight: 100;
   }
