@@ -5,6 +5,8 @@ import {Telegram} from '@styled-icons/boxicons-logos/Telegram'
 import {Facebook} from '@styled-icons/boxicons-logos/Facebook'
 import {Instagram} from '@styled-icons/boxicons-logos/Instagram'
 import {CloseOutline} from '@styled-icons/evaicons-outline/CloseOutline'
+import {CaretRight} from '@styled-icons/boxicons-regular/CaretRight'
+
 import {COLORS} from 'constants/colors'
 
 export const HamburgerMenu = styled(Menu)`
@@ -63,4 +65,10 @@ export const InstagramIcon = styled(Instagram)`
   color: ${COLORS.black};
   width: 25px;
   height: 23px;
+`
+
+export const StageIcon = styled(CaretRight)`
+color: ${COLORS.grey};
+width: 25px;
+height: 23px;
 `
