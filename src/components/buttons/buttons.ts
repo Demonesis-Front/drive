@@ -64,6 +64,10 @@ const handleColorTypeSliderButton = (color: string) => {
       return `linear-gradient(45deg, ${COLORS.darkOrange}, ${COLORS.darkPink})`;
     case "purple":
       return `linear-gradient(45deg, ${COLORS.darkPurple}, ${COLORS.normalPurple})`;
+    case "green":
+      return `linear-gradient(45deg, ${COLORS.green}, ${COLORS.lightGreen})`;
+    case "grey":
+      return `linear-gradient(45deg, ${COLORS.lightGrey}, ${COLORS.grey})`;
     default:
       return `linear-gradient(45deg, ${COLORS.darkGreen}, ${COLORS.normalGreen})`;
   }
@@ -87,5 +91,16 @@ export const SliderButton = styled.div`
 
   @media (max-width: 1030px) {
     margin-bottom: 0;
+  }
+`
+
+export const OrderButton = styled(SliderButton)`
+  width: calc(100% - 30px);
+  margin: 30px;
+
+  @media (max-width: 1000px) {
+    width: calc(100%);
+    margin: 0;
+    margin-top: 30px;
   }
 `

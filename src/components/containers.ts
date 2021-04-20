@@ -17,10 +17,10 @@ export const Container100 = styled.div`
   width: 100%;
 `
 
-export const PageContainer = styled.main`
-width: 100%;
-display: grid;
-grid-template-columns:  700px 1fr;
+export const HomePageContainer = styled.main`
+  width: 100%;
+  display: grid;
+  grid-template-columns:  700px 1fr;
 
   @media (max-width: 1300px) {
     grid-template-columns:  600px 1fr;
@@ -32,6 +32,31 @@ grid-template-columns:  700px 1fr;
 
   @media (max-width: 950px) {
     grid-template-columns:  1fr 0;
+  }
+`
+
+export const OrderPageContainer = styled.main`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+export const OrderPageContent = styled.div`
+  width: 100%;
+  max-width: 1450px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  padding-top: 15px;
+  padding-left: 64px;
+  padding-right: 64px;
+
+  @media (max-width: 800px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media (max-width: 500px) {
+    padding: 0;
+    padding-top: 35px;
   }
 `
 
@@ -64,6 +89,7 @@ export const SectionContainer = styled.div`
 
   @media (max-width: 500px) {
     padding: 0;
+    padding-top: 35px;
   }
 `
 
@@ -74,7 +100,6 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   @media (max-width: 500px) {
-    margin-top: 37px;
     padding-right: 30px;
     display: block;
     text-align: end;
@@ -91,7 +116,6 @@ export const OfferContainer = styled.section`
 
   @media (max-width: 500px) {
     align-self: center;
-    /* padding: 0px; */
   }
 `
 
@@ -188,7 +212,7 @@ export const PopUp100 = styled.div`
   background-color: ${COLORS.black};
   opacity: 0.9;
   position: absolute;
-  z-index: 1000;
+  z-index: 1001;
 
   
 `
@@ -241,4 +265,127 @@ export const SocialRoundContainer = styled.div`
   &:hover{
     background-color: ${COLORS.green};
   }
+`
+
+export const OrderNavigationContainer = styled.div`
+  height: 32px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  @media (max-width: 700px) {
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+`
+
+export const OrderNavigationContainerBorder = styled.div`
+  position: absolute;
+  left: 64px;
+  top: 94px;
+  width: calc(100% - 64px);
+  height: 32px;
+  border-bottom: 1px solid ${COLORS.lightGrey};
+  border-top: 1px solid ${COLORS.lightGrey};
+  z-index: 1;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
+`
+
+export const StageTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 16px;
+  cursor: pointer;
+  z-index: 2;
+`
+
+export const CityAndPickUpContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+  margin-bottom: 60px;
+
+  @media (max-width: 1000px) {
+    justify-content: center;
+    align-items: center;
+  }
+`
+
+export const CityContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 380px;
+  height: 50px;
+
+  
+`
+
+export const StageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+`
+
+export const StageContentContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 1200px) {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+`
+
+export const TotalMainContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  @media (max-width: 1300px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 1200px) {
+    justify-content: center;
+  }
+
+  @media (max-width: 500px) {
+    justify-content: center;
+  }
+`
+
+export const TotalContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 343px;
+  padding: 32px;
+
+  @media (max-width: 1300px) {
+    padding: 0;
+  }
+  
+`
+
+export const TotalDetailContainer = styled.div`
+  width: 100%;
+  display: flex;
 `
