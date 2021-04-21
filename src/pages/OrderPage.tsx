@@ -20,7 +20,6 @@ import { getOrder } from "store/order/selectors";
 
 export const OrderPage = () => {
 	const order = useSelector(getOrder);
-	console.log(order.stage);
 
 	return (
 		<OrderPageContainer>

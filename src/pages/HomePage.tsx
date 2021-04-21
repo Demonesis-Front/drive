@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
 	HomePageContainer,
 	SectionContainer,
@@ -19,8 +19,16 @@ import { HomeCarousel } from "components/carousels/main/HomeCarousel";
 import { Header } from "components/Header";
 import { PATH } from "navigation/path";
 import { LinkContainer } from "components/LinkContainer";
+import { useDispatch } from "react-redux";
+import { orderActions } from "store/order/reducer";
 
 export const HomePage = () => {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(orderActions.init());
+	}, [dispatch]);
+
 	return (
 		<HomePageContainer>
 			<SectionContainer>
@@ -32,6 +40,7 @@ export const HomePage = () => {
 					<OfferDescription>{TEXT.offerSubTitle}</OfferDescription>
 					<LinkContainer to={PATH.order}>
 						<BookButton>{TEXT.book}</BookButton>
+						<div style={{ width: "100%", height: "100px" }}></div>
 					</LinkContainer>
 				</OfferContainer>
 

@@ -43,7 +43,7 @@ export const Total = () => {
 					<TotalDetailContainer>
 						<TotalDetailTitle>{TEXT.model}</TotalDetailTitle>
 						<TotalDetailBorderBottom />
-						<TotalDetail>{order.car.title}</TotalDetail>
+						<TotalDetail>{order.car.name}</TotalDetail>
 					</TotalDetailContainer>
 				)}
 
@@ -53,11 +53,11 @@ export const Total = () => {
 						<TotalPriceTitle>{TEXT.price + ": "}</TotalPriceTitle>
 						{TEXT.from +
 							" " +
-							order.car?.price.from +
+							order.car?.priceMin +
 							" " +
 							TEXT.to +
 							" " +
-							order.car?.price.to}
+							order.car?.priceMax}
 					</TotalPrice>
 				)}
 
