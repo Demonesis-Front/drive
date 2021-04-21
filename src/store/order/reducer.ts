@@ -1,10 +1,37 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { LatLngExpression } from "leaflet";
+
+export type CarType = {
+  id: string;
+  title: string;
+  price: {
+    from: string;
+    to: string;
+    default: number;
+  };
+  img: string;
+  type: string;
+}
+
+type PickUpType = {
+  title: string,
+  id: string,
+  coordinates: LatLngExpression
+}
+
+type CityType = {
+    title: string,
+    id: string,
+    coordinates: LatLngExpression,
+    pickups: PickUpType[]
+}
 
 type OrderState = {
   data: {
-    city: any | null,
-    pickup: any | null,
+    city: CityType,
+    pickup: PickUpType | null,
     stage: number,
+    car: CarType | null,
   }
 }
 
@@ -28,7 +55,8 @@ const initialState: OrderState = {
       ],
     },
     pickup: null,
-    stage: 1
+    stage: 1,
+    car: null,
   }
 }
 const orderSlice = createSlice({
@@ -43,6 +71,9 @@ const orderSlice = createSlice({
     },
     setStage: (state, action: PayloadAction<any>) => {
       state.data.stage = action.payload
+    },
+    setCar: (state, action: PayloadAction<any>) => {
+      state.data.car = action.payload
     }
   }
 })

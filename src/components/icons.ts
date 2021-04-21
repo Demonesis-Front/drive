@@ -9,6 +9,10 @@ import {CaretRight} from '@styled-icons/boxicons-regular/CaretRight'
 
 import {COLORS} from 'constants/colors'
 
+type CarTitleIconType = {
+  active: boolean;
+}
+
 export const HamburgerMenu = styled(Menu)`
   color: ${COLORS.white};
   width: 60px;
@@ -34,10 +38,6 @@ export const ClosePopUp = styled(CloseOutline)`
   user-select: none; 
   cursor: pointer;
   z-index: 1001;
-
-  @media (max-width: 500px) {
-    /* margin-left: 52px; */
-  }
 
   @media (max-width: 500px) {
     position: absolute;
@@ -71,4 +71,16 @@ export const StageIcon = styled(CaretRight)`
 color: ${COLORS.grey};
 width: 25px;
 height: 23px;
+`
+
+
+export const CarTypeIcon = styled.div`
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border-color: ${(props: CarTitleIconType) => props.active ? COLORS.green : COLORS.grey};
+  border-width: 2px;
+  border-style: solid;
+  margin-right: 7px;
+  margin-bottom: 2px;
 `

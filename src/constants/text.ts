@@ -21,4 +21,7 @@ export const TEXT = {
   price: 'Цена',
   total: 'Итого',
   choseModel: 'Выбрать модель',
+  additionally: 'Дополнительно',
+  from: 'от',
+  to: 'до',
 }

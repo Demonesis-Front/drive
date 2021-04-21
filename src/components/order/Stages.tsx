@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getOrder } from "store/order/selectors";
 import { orderActions } from "store/order/reducer";
@@ -14,17 +14,21 @@ type StageType = {
 export const Stages = () => {
 	const dispatch = useDispatch();
 	const order = useSelector(getOrder);
-	const [active, setActive] = useState<number>(1);
 
 	const activeHandler = ({ position, title }: StageType) => {
 		//TODO: change to new condition
-		if (position > 2) {
-			return;
-		}
-
-		if (order.pickup) {
-			setActive(position);
-			dispatch(orderActions.setStage(position));
+		switch (position) {
+			case 1:
+				dispatch(orderActions.setStage(position));
+				break;
+			case 2:
+				order.pickup && dispatch(orderActions.setStage(position));
+				break;
+			case 3:
+				order.car && dispatch(orderActions.setStage(position));
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -33,8 +37,8 @@ export const Stages = () => {
 			{stages.map((stage) => (
 				<StageTitleContainer key={stage.position + stage.title}>
 					<StageTitle
-						active={stage.position === active ? true : false}
-						disable={stage.position < active ? false : true}
+						active={stage.position === order.stage ? true : false}
+						disable={stage.position < order.stage ? false : true}
 						onClick={() => activeHandler(stage)}
 					>
 						{stage.title}
