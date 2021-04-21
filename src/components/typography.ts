@@ -27,6 +27,7 @@ export const LogoContainer = styled.div`
   color: ${COLORS.green};
   font-weight: 700;
   font-size: 30px;
+  cursor: pointer;
 
   @media (max-width: 500px) {
     

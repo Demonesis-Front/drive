@@ -40,7 +40,6 @@ export const HomePage = () => {
 					<OfferDescription>{TEXT.offerSubTitle}</OfferDescription>
 					<LinkContainer to={PATH.order}>
 						<BookButton>{TEXT.book}</BookButton>
-						<div style={{ width: "100%", height: "100px" }}></div>
 					</LinkContainer>
 				</OfferContainer>
 
