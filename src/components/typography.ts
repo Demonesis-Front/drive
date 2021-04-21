@@ -7,6 +7,10 @@ type StageTitlePropsType = {
   active?: boolean;
 }
 
+type ActiveType = {
+  active: boolean;
+}
+
 export const LanguageMenu = styled.div`
   font-size: 13px;
   color: ${COLORS.green};
@@ -156,6 +160,12 @@ export const TotalTitle = styled.div`
   }
 `
 
+export const TotalDetailTitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  text-align: left;
+  color: ${COLORS.black};
+`
 export const TotalDetail = styled.div`
   font-size: 14px;
   font-weight: 400;
@@ -165,6 +175,8 @@ export const TotalDetail = styled.div`
 
 export const TotalDetailBorderBottom = styled.div`
   flex-grow: 1;
+  margin-left: 10px;
+  margin-right: 10px;
   border-bottom: 1px dotted ${COLORS.grey};
 `
 
@@ -178,4 +190,23 @@ export const TotalPriceTitle = styled.span`
   font-size: 16px;
   font-weight: 700;
   color: ${COLORS.black};
+`
+
+export const CarTitle = styled.div`
+  font-size: 16px;
+  font-weight: 500;
+  color: ${COLORS.black};
+  cursor: pointer;
+  padding: 20px;
+`
+export const CarSubTitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${COLORS.grey};
+`
+export const CarTypeTitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${(props: ActiveType) => props.active ? COLORS.black : COLORS.grey};
+  cursor: pointer;
 `

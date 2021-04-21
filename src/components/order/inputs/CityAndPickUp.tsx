@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
+import { getOrder } from "store/order/selectors";
+import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { makeStyles } from "@material-ui/core/styles";
@@ -8,16 +10,16 @@ import { CityAndPickUpContainer, CityContainer } from "components/containers";
 import { CityAndPickUpTitle } from "components/typography";
 import { TEXT } from "constants/text";
 import { COLORS } from "constants/colors";
-import styled from "styled-components";
 
 export const CityAndPickUp = () => {
 	const dispatch = useDispatch();
-	const [activeCity, setActiveCity] = useState(city[0]);
+	const order = useSelector(getOrder);
 	const label = labelStyle();
 
 	const handleCityChose = (_: any, value: any) => {
-		setActiveCity(value);
-		dispatch(orderActions.setCity(value));
+		if (value) {
+			dispatch(orderActions.setCity(value));
+		}
 	};
 	const handlePickUpChose = (_: any, value: any) => {
 		dispatch(orderActions.setPickUp(value));
@@ -34,11 +36,10 @@ export const CityAndPickUp = () => {
 					style={{ width: 250 }}
 					clearOnEscape={true}
 					onChange={handleCityChose}
-					defaultValue={activeCity}
 					renderInput={(params) => (
 						<Input
 							{...params}
-							label={TEXT.choseCity}
+							placeholder={order.city.title}
 							variant="standard"
 							InputLabelProps={{ classes: label }}
 						/>
@@ -49,7 +50,7 @@ export const CityAndPickUp = () => {
 				<CityAndPickUpTitle>{TEXT.pickup}</CityAndPickUpTitle>
 				<Autocomplete
 					id="combo-box-demo"
-					options={activeCity.pickups}
+					options={order.city.pickups}
 					getOptionLabel={(option) => option.title}
 					style={{ width: 250 }}
 					clearOnEscape={true}
@@ -58,7 +59,7 @@ export const CityAndPickUp = () => {
 						<Input
 							{...params}
 							hiddenLabel={true}
-							label={TEXT.chosePickUp}
+							placeholder={order.pickup?.title || TEXT.chosePickUp}
 							variant="standard"
 							InputLabelProps={{ classes: label }}
 						/>

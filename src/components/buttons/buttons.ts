@@ -97,10 +97,12 @@ export const SliderButton = styled.div`
 export const OrderButton = styled(SliderButton)`
   width: calc(100% - 30px);
   margin: 30px;
+  border-radius: 10px;
 
   @media (max-width: 1000px) {
     width: calc(100%);
     margin: 0;
     margin-top: 30px;
+    margin-bottom: 30px;
   }
 `
