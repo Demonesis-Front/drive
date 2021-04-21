@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { orderActions, CarType } from "store/order/reducer";
+import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
 import {
 	CarTypeContainer,
@@ -12,7 +12,8 @@ import {
 } from "components/containers";
 import { CarTitle, CarSubTitle, CarTypeTitle } from "components/typography";
 import { CarTypeIcon } from "components/icons";
-import { cars } from "constants/cars";
+import { url } from "services/main/service";
+import { CarDBType } from "store/order/types";
 
 export const ModelStage = () => {
 	const dispatch = useDispatch();
@@ -28,16 +29,16 @@ export const ModelStage = () => {
 		setActiveType(null);
 	};
 
-	const carHandler = (car: CarType) => {
+	const carHandler = (car: CarDBType) => {
 		dispatch(orderActions.setCar(car));
 	};
 
-	const carFilter = (car: CarType) => {
+	const carFilter = (car: CarDBType) => {
 		if (!activeType) {
 			return car;
 		}
 
-		if (activeType && car.type === activeType) {
+		if (activeType && car.categoryId.name === activeType) {
 			return car;
 		}
 	};
@@ -58,17 +59,17 @@ export const ModelStage = () => {
 				</CarTypeContainer>
 				{/* Car grid */}
 				<CarCardContainer>
-					{cars.filter(carFilter).map((car) => (
+					{order.cars?.filter(carFilter).map((car) => (
 						<CarCard
 							key={car.id}
 							active={car.id === order.car?.id ? true : false}
 							onClick={() => carHandler(car)}
 						>
 							<CarTitle>
-								{car.title}
-								<CarSubTitle>{car.price.from + " - " + car.price.to} </CarSubTitle>
+								{car.name}
+								<CarSubTitle>{car.priceMin + " - " + car.priceMax} </CarSubTitle>
 							</CarTitle>
-							<CarImage img={car.img} />
+							<CarImage img={url + car.thumbnail.path} />
 						</CarCard>
 					))}
 				</CarCardContainer>
@@ -79,6 +80,6 @@ export const ModelStage = () => {
 
 const typeMenu = [
 	{ id: "21", title: "Все модели", type: null },
-	{ id: "22", title: "Эконом", type: "economy" },
-	{ id: "23", title: "Премиум", type: "premium" },
+	{ id: "22", title: "Эконом", type: "Эконом" },
+	{ id: "23", title: "Премиум", type: "Премиум" },
 ];

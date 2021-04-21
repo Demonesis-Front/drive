@@ -1,4 +1,4 @@
-import {CarType} from 'store/order/reducer'
+import {CarType} from 'store/order/types'
 
 export const carType = {
   economy: 'economy',

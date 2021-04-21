@@ -349,8 +349,6 @@ export const StageContentContainer = styled.div`
   grid-template-columns: 1fr 1fr;
 
   @media (max-width: 1200px) {
-    /* grid-template-columns: 1fr;
-    justify-items: auto; */
     width: 100%;
     display: flex;
     justify-content: space-between;
