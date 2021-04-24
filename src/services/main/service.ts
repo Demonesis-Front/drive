@@ -10,26 +10,27 @@ export const path = {
   point: '/point',
 }
 
-const config = {
-  headers: { 'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b' },
-};
+const instance = axios.create({
+  baseURL: DBurl,
+  timeout: 1000,
+  headers: {'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'}
+})
 
 
 export const DBService = {
   async getCities(){
-      const {data}: AxiosResponse<getCitiesType> = await axios.get(DBurl + path.city, config)
+      const {data}: AxiosResponse<getCitiesType> = await instance.get(path.city)
       
       return data.data
   },
   async getPoints(){
-      const {data}: AxiosResponse<any> = await axios.get(DBurl + path.point, config)
-      console.log(data)
+      const {data}: AxiosResponse<any> = await instance.get(path.point)
       
       return data.data
   },
   async getCars(){
-      const {data}: AxiosResponse<getCarsType> = await axios.get(DBurl + path.car, config)
-
+      const {data}: AxiosResponse<getCarsType> = await instance.get(path.car)
+      
       return data.data
   }
 }
