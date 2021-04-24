@@ -31,6 +31,13 @@ export const Total = () => {
 			<TotalContainer>
 				<TotalTitle>{TEXT.totalTitle + ":"}</TotalTitle>
 
+				{order.city && (
+					<TotalDetailContainer right={true}>
+						{/* <TotalDetailTitle></TotalDetailTitle> */}
+						{/* <TotalDetailBorderBottom /> */}
+						<TotalDetail>{order.city.title}</TotalDetail>
+					</TotalDetailContainer>
+				)}
 				{order.pickup && (
 					<TotalDetailContainer>
 						<TotalDetailTitle>{TEXT.pickup}</TotalDetailTitle>

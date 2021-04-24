@@ -14,6 +14,7 @@ export const TEXT = {
   pickup: 'Пункт выдачи',
   chosePickUp: 'Начните вводить пункт ...',
   totalTitle: 'Ваш заказ',
+  order: 'Заказ',
   model: 'Модель',
   color: 'Цвет',
   duration: 'Длительность аренды',

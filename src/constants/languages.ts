@@ -1,4 +1,4 @@
 export const LANGUAGES = {
   eng: 'Eng',
-  rus: 'Rus'
+  rus: 'Рус'
 }

@@ -5,7 +5,15 @@ import {
 	CarouselRightButton,
 } from "components/buttons/buttons";
 
-export const CarouselButtons = (props: any) => {
+type CarouselButtonsType = {
+	index: number;
+	total: number;
+	loop: number;
+	prevHandler: () => void;
+	nextHandler: () => void;
+};
+
+export const CarouselButtons = (props: CarouselButtonsType) => {
 	const { index, total, loop, prevHandler, nextHandler } = props;
 	return (
 		<div style={wrapper}>

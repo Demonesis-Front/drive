@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {OrderState} from './types'
+import {OrderState, CityType, PickUpType, CarDBType} from './types'
 
 const initialState: OrderState = {
   data: {
@@ -20,6 +20,7 @@ const initialState: OrderState = {
         },
       ],
     },
+    cities: null,
     pickup: null,
     stage: 1,
     car: null,
@@ -31,19 +32,22 @@ const orderSlice = createSlice({
   initialState,
   reducers:{
     init: (state) => state,
-    setCity: (state, action: PayloadAction<any>) => {
+    setCity: (state, action: PayloadAction<CityType | null>) => {
       state.data.city = action.payload
     },
-    setPickUp: (state, action: PayloadAction<any>) => {
+    setCities: (state, action: PayloadAction<any | null>) => {
+      state.data.cities = action.payload
+    },
+    setPickUp: (state, action: PayloadAction<PickUpType | null>) => {
       state.data.pickup = action.payload
     },
-    setStage: (state, action: PayloadAction<any>) => {
+    setStage: (state, action: PayloadAction<number>) => {
       state.data.stage = action.payload
     },
-    setCar: (state, action: PayloadAction<any>) => {
+    setCar: (state, action: PayloadAction<CarDBType | null>) => {
       state.data.car = action.payload
     },
-    setCars: (state, action: PayloadAction<any>) => {
+    setCars: (state, action: PayloadAction<CarDBType[]>) => {
       state.data.cars = action.payload
     },
   }

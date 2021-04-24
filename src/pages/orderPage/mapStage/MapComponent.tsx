@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
+import { PickUpType } from "store/order/types";
 import Leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import icon from "img/marker.png";
+import icon from "assets/marker.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
+import iconRetina from "assets/marker.png";
+
 let DefaultIcon = Leaflet.icon({
 	...Leaflet.Icon.Default.prototype.options,
 	iconUrl: icon,
@@ -16,11 +19,14 @@ let DefaultIcon = Leaflet.icon({
 });
 Leaflet.Marker.prototype.options.icon = DefaultIcon;
 
-Leaflet.Icon.Default.mergeOptions({
-	iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-	iconUrl: require("leaflet/dist/images/marker-icon.png"),
-	shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
-});
+// INFO: That will come in handy in the future.
+
+// Leaflet.Icon.Default.mergeOptions({
+// 	iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+// 	iconUrl: require("leaflet/dist/images/marker-icon.png"),
+// 	shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+// });
+
 type MyComponentPropType = {
 	center: LatLngExpression;
 	zoom: number;
@@ -34,7 +40,14 @@ const MyComponent = ({ center, zoom }: MyComponentPropType) => {
 
 export const MapComponent = () => {
 	const order = useSelector(getOrder);
+	const dispatch = useDispatch();
 	const [position] = useState<LatLngExpression>([53.205167, 50.133539]);
+
+	const markerHandler = (pickup: PickUpType) => {
+		console.log("click");
+
+		dispatch(orderActions.setPickUp(pickup));
+	};
 
 	return (
 		<>
@@ -50,19 +63,18 @@ export const MapComponent = () => {
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
 
-				{!order.pickup &&
-					order.city?.pickups &&
-					order.city?.pickups.map((marker: any) => (
-						<Marker key={marker.id} position={marker.coordinates}>
+				{order.city &&
+					order.city?.pickups.map((marker: PickUpType) => (
+						<Marker
+							key={marker.id}
+							position={marker.coordinates}
+							eventHandlers={{
+								click: () => markerHandler(marker),
+							}}
+						>
 							<Popup>{marker.title}</Popup>
 						</Marker>
 					))}
-
-				{order.pickup && (
-					<Marker key={order.pickup.id} position={order.pickup.coordinates}>
-						<Popup>{order.pickup.title}</Popup>
-					</Marker>
-				)}
 			</MapContainer>
 		</>
 	);

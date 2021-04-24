@@ -1,11 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
+import { CityType, PickUpType } from "store/order/types";
 import { getOrder } from "store/order/selectors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { makeStyles } from "@material-ui/core/styles";
 import { CityAndPickUpContainer, CityContainer } from "components/containers";
 import { CityAndPickUpTitle } from "components/typography";
 import { TEXT } from "constants/text";
@@ -14,55 +14,68 @@ import { COLORS } from "constants/colors";
 export const CityAndPickUp = () => {
 	const dispatch = useDispatch();
 	const order = useSelector(getOrder);
-	const label = labelStyle();
 
-	const handleCityChose = (_: any, value: any) => {
+	const handleCityChose = (
+		event: React.ChangeEvent<{}>,
+		value: CityType | null
+	) => {
+		console.log(value);
+
+		if (!value) {
+			dispatch(orderActions.setCar(null));
+			dispatch(orderActions.setPickUp(null));
+			dispatch(orderActions.setCity(null));
+		}
+
 		if (value) {
+			dispatch(orderActions.setCar(null));
+			dispatch(orderActions.setPickUp(null));
 			dispatch(orderActions.setCity(value));
 		}
 	};
-	const handlePickUpChose = (_: any, value: any) => {
-		dispatch(orderActions.setPickUp(value));
+	const handlePickUpChose = (
+		event: React.ChangeEvent<{}>,
+		value: PickUpType | null
+	) => {
+		if (!value) {
+			dispatch(orderActions.setCar(null));
+			dispatch(orderActions.setPickUp(value));
+		}
+
+		if (value) {
+			dispatch(orderActions.setCar(null));
+			dispatch(orderActions.setPickUp(value));
+		}
 	};
 
 	return (
 		<CityAndPickUpContainer>
 			<CityContainer>
 				<CityAndPickUpTitle>{TEXT.city}</CityAndPickUpTitle>
-				<Autocomplete
+				<StyledAutocomplete
 					id="combo-box-demo"
 					options={city}
 					getOptionLabel={(option) => option.title}
-					style={{ width: 250 }}
-					clearOnEscape={true}
+					forcePopupIcon={false}
+					value={order.city}
 					onChange={handleCityChose}
 					renderInput={(params) => (
-						<Input
-							{...params}
-							placeholder={order.city.title}
-							variant="standard"
-							InputLabelProps={{ classes: label }}
-						/>
+						<TextField {...params} placeholder={TEXT.choseCity} variant="standard" />
 					)}
 				/>
 			</CityContainer>
+			{/* PickUp */}
 			<CityContainer>
 				<CityAndPickUpTitle>{TEXT.pickup}</CityAndPickUpTitle>
-				<Autocomplete
+				<StyledAutocomplete
 					id="combo-box-demo"
-					options={order.city.pickups}
-					getOptionLabel={(option) => option.title}
-					style={{ width: 250 }}
-					clearOnEscape={true}
+					options={order.city?.pickups || []}
+					getOptionLabel={(option: PickUpType) => option.title}
+					forcePopupIcon={false}
+					value={order.pickup}
 					onChange={handlePickUpChose}
 					renderInput={(params) => (
-						<Input
-							{...params}
-							hiddenLabel={true}
-							placeholder={order.pickup?.title || TEXT.chosePickUp}
-							variant="standard"
-							InputLabelProps={{ classes: label }}
-						/>
+						<TextField {...params} placeholder={TEXT.chosePickUp} variant="standard" />
 					)}
 				/>
 			</CityContainer>
@@ -70,22 +83,82 @@ export const CityAndPickUp = () => {
 	);
 };
 
-const labelStyle = makeStyles((theme) => ({
-	root: {
-		"&$focused": {
-			color: COLORS.green,
-		},
-	},
-	focused: {},
-}));
+// const useStyles = makeStyles({
+//   button
+// })
 
-const Input = styled(TextField)`
+const StyledAutocomplete: typeof Autocomplete = styled(Autocomplete)`
+	min-width: 224px;
+	padding-left: 0px;
+
+	.MuiAutocomplete-root {
+		padding: 0px;
+	}
+
+	.MuiFormControl-root {
+		padding: 0px;
+	}
+	.MuiInputBase-root {
+		padding: 0px;
+	}
+
+	.MuiAutocomplete-clearIndicator {
+		padding: 3px 3px;
+		margin-top: 3px;
+		margin-right: 3px;
+
+		visibility: ${({ value }) => (value ? "visible" : "hidden")};
+	}
+
+	.MuiSvgIcon-fontSizeSmall {
+		font-size: 0.8rem;
+	}
+
+	.MuiAutocomplete-input:first-child {
+		padding: 0px;
+	}
+
+	.MuiAutocomplete-inputRoot[class*="MuiInput-root"]
+		.MuiAutocomplete-input:first-child {
+		padding: 3px 0;
+		padding-left: 8px;
+		color: ${COLORS.black};
+	}
+
+	.MuiAutocomplete-input:first-child {
+		padding: 0px;
+	}
+
+	.MuiAutocomplete-inputFocused {
+		button {
+			visibility: visible;
+		}
+	}
+
+	div {
+		font-size: 14px;
+		font-weight: 300;
+		padding-left: 8px;
+		padding-top: 3px;
+		padding-bottom: 3px;
+	}
+
+	.MuiInput-underline:before {
+		border-bottom: 1px solid ${COLORS.grey};
+	}
+	&& .MuiInput-underline:hover:before {
+		border-bottom: 1px solid ${COLORS.grey};
+	}
+	.MuiInput-underline:focus:before {
+		border-bottom: none;
+	}
+
 	.MuiInput-underline:after {
 		border-bottom: 2px solid ${COLORS.green};
 	}
 `;
 
-const city = [
+const city: CityType[] = [
 	{
 		title: "Ульяновск",
 		id: "1",

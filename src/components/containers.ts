@@ -24,6 +24,7 @@ export const Container100 = styled.div`
 `
 
 export const HomePageContainer = styled.main`
+  padding-left: 64px;
   width: 100%;
   display: grid;
   grid-template-columns:  700px 1fr;
@@ -39,41 +40,60 @@ export const HomePageContainer = styled.main`
   @media (max-width: 950px) {
     grid-template-columns:  1fr 0;
   }
+  @media (max-width: 500px) {
+    padding-left: 0px;
+  }
 `
 
 export const OrderPageContainer = styled.main`
-  width: 100%;
+  /* width: 100%; */
+  width: auto;
+  flex-grow: 1;
   display: flex;
   justify-content: center;
+  margin-left: 64px;
+
+  @media (max-width: 500px) {
+    margin-left: 0px;
+  }
 `
 
 export const OrderPageContent = styled.div`
-  width: 100%;
+  flex-grow: 1;
   max-width: 1450px;
   display: grid;
   grid-template-rows: auto auto 1fr;
-  padding-top: 15px;
+  padding-top: 2px;
   padding-left: 64px;
   padding-right: 64px;
 
   @media (max-width: 800px) {
-    padding-left: 10px;
-    padding-right: 10px;
+    /* width: calc(100% - 80px); */
+    padding-left: 20px;
+    padding-right: 20px;
   }
   @media (max-width: 500px) {
-    padding: 0;
-    padding-top: 35px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 25px;
   }
 `
 
 export const MenuContainer = styled.nav`
+  position: fixed;
+  top: 0px;
+  left: 0px;
   height: 100%;
   width: 64px;
-  background-color: ${COLORS.lightBlack};
+  background-color: ${COLORS.black};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  z-index: 1002;
 
   @media (max-width: 500px) {
     width: 0;
@@ -87,20 +107,20 @@ export const SectionContainer = styled.div`
   box-sizing: border-box;
   flex-grow: 1;
 
-  padding: 12px 66px 25px 66px;
+  padding: 2px 66px 24px 66px;
 
   @media (max-width: 1200px) {
-    padding: 12px 32px 25px 32px;
+    padding: 2px 32px 24px 32px;
   }
 
   @media (max-width: 500px) {
     padding: 0;
-    padding-top: 35px;
+    padding-top: 24px;
   }
 `
 
 export const HeaderContainer = styled.header`
-  height: 80px;
+  height: 92px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -154,6 +174,7 @@ export const CarouselButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   &:hover{
     transition: 0.5s;
@@ -161,7 +182,7 @@ export const CarouselButtonContainer = styled.div`
   }
 
   @media (max-width: 1200px) {
-    width: 25px;
+    width: 32px;
   }
 `
 
@@ -175,6 +196,14 @@ export const IndicatorContainer = styled.div`
 `
 
 export const CarouselContainer = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+
+  @media (max-width: 1200px) {
+    padding: 25px 66px;
+    padding-bottom: 96px;
+  }
 `
 
 export const SliderContainer = styled.div`
@@ -215,11 +244,30 @@ export const SliderLinerGradient = styled.div`
 export const PopUp100 = styled.div`
   height: 100%;
   width: 100%;
-  background-color: ${COLORS.black};
-  opacity: 0.9;
-  position: absolute;
+  background: linear-gradient(90deg, ${COLORS.black} 55%, ${COLORS.lightBlack02});
+  position: fixed;
+  top: 0px;
+  left: 0px;
   z-index: 1001;
 
+  @media (max-width: 1550px) {
+    background: linear-gradient(90deg, ${COLORS.black} 55%, ${COLORS.lightBlack02});
+  }
+  @media (max-width: 1400px) {
+    background: linear-gradient(90deg, ${COLORS.black} 58%, ${COLORS.lightBlack02});
+  }
+  @media (max-width: 1300px) {
+    background: linear-gradient(90deg, ${COLORS.black} 60%, ${COLORS.lightBlack02});
+  }
+  @media (max-width: 1200px) {
+    background: linear-gradient(90deg, ${COLORS.black} 60%, ${COLORS.lightBlack02});
+  }
+  @media (max-width: 1100px) {
+    background: linear-gradient(90deg, ${COLORS.black} 65%, ${COLORS.lightBlack02});
+  }
+  @media (max-width: 1000px) {
+    background: ${COLORS.black};
+  }
   
 `
 
@@ -231,7 +279,9 @@ export const LeftMenuList = styled.ul`
   list-style-type: none;
 
   @media (max-width: 500px) {
-    top: 100px;
+    top: 60px;
+    left: 20px;
+    padding-left: 0px;
   }
 `
 
@@ -242,6 +292,15 @@ export const LeftMenuItem = styled.li`
   cursor: pointer;
   user-select: none;
   margin: 15px;
+
+  &:hover{
+    color: ${COLORS.green};
+  }
+
+  @media (max-width: 500px) {
+    font-size: 18px;
+    margin-left: 0px;
+  }
 `
 
 export const SocialMenuContainer = styled.div`
@@ -252,7 +311,8 @@ export const SocialMenuContainer = styled.div`
   display: flex;
 
   @media (max-width: 500px) {
-    top: 300px;
+    top: 245px;
+    left: 12px;
   }
 `
 
@@ -271,6 +331,12 @@ export const SocialRoundContainer = styled.div`
   &:hover{
     background-color: ${COLORS.green};
   }
+
+  @media (max-width: 500px) {
+    width: 25px;
+    height: 25px;
+  }
+  
 `
 
 export const OrderNavigationContainer = styled.div`
@@ -285,9 +351,6 @@ export const OrderNavigationContainer = styled.div`
     align-items: flex-start;
   }
 
-  @media (max-width: 500px) {
-    display: none;
-  }
 `
 
 export const OrderNavigationContainerBorder = styled.div`
@@ -308,9 +371,12 @@ export const OrderNavigationContainerBorder = styled.div`
 export const StageTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-right: 16px;
   cursor: pointer;
   z-index: 2;
+
+  @media (max-width: 800px) {
+    display: none;
+  }
 `
 
 export const CityAndPickUpContainer = styled.div`
@@ -332,6 +398,10 @@ export const CityContainer = styled.div`
   width: 380px;
   height: 50px;
 
+  @media (max-width: 500px) {
+    justify-content: center;
+    width: 100%;
+  }
   
 `
 
@@ -376,8 +446,13 @@ export const TotalMainContainer = styled.div`
   }
 
   @media (max-width: 500px) {
+    display: none;
     justify-content: center;
   }
+`
+
+export const TotalMobileMainContainer = styled.div`
+  
 `
 
 export const TotalContainer = styled.div`
@@ -385,17 +460,41 @@ export const TotalContainer = styled.div`
   flex-direction: column;
   width: 343px;
   padding: 32px;
+  border-left: 1px dotted ${COLORS.lightGrey};
 
   @media (max-width: 1300px) {
     padding: 0;
   }
-  
+  @media (max-width: 1000px) {
+    border-left: none;
+  }
 `
+export const TotalMobileContainer = styled.div`
+  display: flex;
+  background-color: ${COLORS.white};
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 4px 30px;
+  z-index: 1000;
+`
+
+
+
+type RightType = {
+  right?: boolean;
+}
 
 export const TotalDetailContainer = styled.div`
   width: 100%;
   display: flex;
   margin-bottom: 10px;
+  ${(props: RightType) => props.right ? 'justify-content: flex-end;' : null}
+
 `
 
 export const CarTypeContainer = styled.div`
@@ -405,9 +504,9 @@ export const CarTypeContainer = styled.div`
 `
 export const CarTitleContainer = styled.div`
   display: flex;
+
   align-items: center;
-  margin-right: 10px;
-  padding: 5px;
+  margin-right: 16px;
 `
 
 export const CarCardContainer = styled.div`
@@ -434,6 +533,10 @@ export const CarCard = styled.div`
   &:hover{
     border-color: ${(props: ActiveType) => props.active ? COLORS.green : COLORS.grey};
   }
+
+  @media (max-width: 500px) {
+    width: 90%;
+  }
   
 `
 
@@ -447,4 +550,12 @@ background-image: url(${(props: ImageType) => props.img});
 background-size: 100%;
 background-repeat: no-repeat;
 background-position: bottom;
+`
+
+export const MenuBackground = styled.div`
+  width: 64px;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `

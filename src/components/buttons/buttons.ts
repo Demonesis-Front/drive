@@ -26,6 +26,13 @@ export const BookButton = styled.div`
   user-select: none; 
   cursor: pointer;
 
+  &:hover{
+    filter: brightness(90%);
+  }
+  &:active{
+    filter: brightness(80%);
+  }
+
   @media (max-width: 500px) {
     width: 100%;
   }
@@ -67,7 +74,7 @@ const handleColorTypeSliderButton = (color: string) => {
     case "green":
       return `linear-gradient(45deg, ${COLORS.green}, ${COLORS.lightGreen})`;
     case "grey":
-      return `linear-gradient(45deg, ${COLORS.lightGrey}, ${COLORS.grey})`;
+      return `${COLORS.lightGrey}`;
     default:
       return `linear-gradient(45deg, ${COLORS.darkGreen}, ${COLORS.normalGreen})`;
   }
@@ -89,6 +96,13 @@ export const SliderButton = styled.div`
   user-select: none; 
   cursor: pointer;
 
+  &:hover{
+    filter: brightness(90%);
+  }
+  &:active{
+    filter: brightness(80%);
+  }
+
   @media (max-width: 1030px) {
     margin-bottom: 0;
   }
@@ -97,12 +111,49 @@ export const SliderButton = styled.div`
 export const OrderButton = styled(SliderButton)`
   width: calc(100% - 30px);
   margin: 30px;
-  border-radius: 10px;
+  border-radius: 8px;
+  
+  &:hover{
+    filter: brightness(90%);
+  }
+  &:active{
+    filter: brightness(80%);
+  }
+
 
   @media (max-width: 1000px) {
-    width: calc(100%);
+    width: 100%;
     margin: 0;
     margin-top: 30px;
     margin-bottom: 30px;
+  }
+
+  @media (max-width: 500px) {
+    width: auto;
+    flex-grow: 1;
+    margin: 30px 30px;
+  }
+`
+
+export const OrderMobileButton = styled(SliderButton)`
+  display: none;
+  border-radius: 8px;
+  width: 300px;
+  position: fixed;
+  bottom: 40px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+
+  &:hover{
+    filter: brightness(90%);
+  }
+  &:active{
+    filter: brightness(80%);
+  }
+
+  @media (max-width: 500px) {
+    display: flex
   }
 `

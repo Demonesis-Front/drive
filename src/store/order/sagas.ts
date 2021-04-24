@@ -1,6 +1,7 @@
 import {put, all, call, takeLatest} from 'redux-saga/effects';
 import { DBService } from 'services/main/service';
 import {orderActions} from 'store/order/reducer';
+import { CarDBType, CityDBType } from './types';
 
 export function* orderSagas() {
   yield all([
@@ -10,7 +11,11 @@ export function* orderSagas() {
 
 function* orderInitSaga() {
   try {
-    const data: [] = yield call(DBService.getCars);
+    const cities: CityDBType[] = yield call(DBService.getCities);
+    yield put(orderActions.setCities(cities));
+    const data: CarDBType[] = yield call(DBService.getCars);
     yield put(orderActions.setCars(data));
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 }

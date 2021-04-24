@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { HomePage } from "pages/HomePage";
-import { OrderPage } from "pages/OrderPage";
+import { HomePage } from "pages/home/HomePage";
+import { OrderPage } from "pages/orderPage/OrderPage";
 import { PATH } from "./path";
 
 export const Navigation = () => (

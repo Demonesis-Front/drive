@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import {COLORS} from 'constants/colors'
 
-
 type StageTitlePropsType = {
   disable?: boolean;
   active?: boolean;
@@ -12,14 +11,31 @@ type ActiveType = {
 }
 
 export const LanguageMenu = styled.div`
+position: fixed;
+left: 8px;
+bottom: 18px;
   font-size: 13px;
-  color: ${COLORS.green};
+  color: ${COLORS.white};
   font-weight: 900;
   text-align: center;
-  margin-bottom: 33px;
+  /* margin-bottom: 33px; */
+  cursor: pointer;
+  user-select: none;
+  border-radius: 50%;
+  padding: 13px 10px;
+  border: 1px solid transparent;
+  z-index: 1002;
+
+  &:hover{
+    border: 1px solid ${COLORS.white};
+  }
+
+  &:active{
+    color: ${COLORS.green};
+  }
 
   @media (max-width: 500px) {
-    display: none;
+    display: ${(props: ActiveType) => props.active ? 'block' : 'none'};
   }
 `
 
@@ -125,7 +141,6 @@ export const SliderSubTitle = styled.div`
 export const StageTitle = styled.div`
   font-size: 14px;
   font-weight: 900;
-  margin-right: 16px;
   user-select: none;  
   cursor: pointer;
   ${(props: StageTitlePropsType) => {
@@ -141,11 +156,15 @@ export const StageTitle = styled.div`
 `
 
 export const CityAndPickUpTitle = styled.div`
-  font-size: 16px;
-  font-weight: 400;
-  margin-right: 20px;
-  padding-bottom: 7px;
+  font-size: 14px;
+  font-weight: 300;
+  margin-right: 8px;
+  padding-bottom: 3px;
   color: ${COLORS.lightBlack};
+
+  @media (max-width: 500px) {
+    display: none;
+  }
 `
 
 export const TotalTitle = styled.div`

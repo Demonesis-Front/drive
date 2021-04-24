@@ -49,12 +49,21 @@ export type CityType = {
     pickups: PickUpType[]
 }
 
+export type CityDBType = {
+  createdAt: number,
+  id: string,
+  name: string,
+  updatedAt: number,
+}
+
 export type OrderState = {
   data: {
-    city: CityType,
+    city: CityType | null,
+    cities: any | null,
     pickup: PickUpType | null,
     stage: number,
     car: CarDBType | null,
     cars: CarDBType[] | null,
   }
 }
+

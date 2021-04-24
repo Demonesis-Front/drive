@@ -30,6 +30,7 @@ export const ModelStage = () => {
 	};
 
 	const carHandler = (car: CarDBType) => {
+		// TODO: after stage 3 implemented, need add orderAction.setAdditionally(null)
 		dispatch(orderActions.setCar(car));
 	};
 
