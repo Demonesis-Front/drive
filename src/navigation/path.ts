@@ -1,4 +1,4 @@
 export const PATH = {
-  drive: '/drive',
+  drive: '/',
   order: '/order'
 }

@@ -7,7 +7,7 @@ import { PATH } from "./path";
 export const Navigation = () => (
 	<Router>
 		<Switch>
-			<Route exact path={"/"}>
+			<Route exact path={PATH.drive}>
 				<HomePage />
 			</Route>
 			<Route exact path={PATH.order}>
