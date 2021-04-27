@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
-import { CityType, PickUpType } from "store/order/types";
+import { CityDBType, PointDBType } from "store/order/types";
 import { getOrder } from "store/order/selectors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
@@ -17,34 +17,32 @@ export const CityAndPickUp = () => {
 
 	const handleCityChose = (
 		event: React.ChangeEvent<{}>,
-		value: CityType | null
+		value: CityDBType | null
 	) => {
-		console.log(value);
-
 		if (!value) {
 			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPickUp(null));
+			dispatch(orderActions.setPoint(null));
 			dispatch(orderActions.setCity(null));
 		}
 
 		if (value) {
 			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPickUp(null));
+			dispatch(orderActions.setPoint(null));
 			dispatch(orderActions.setCity(value));
 		}
 	};
 	const handlePickUpChose = (
 		event: React.ChangeEvent<{}>,
-		value: PickUpType | null
+		value: PointDBType | null
 	) => {
 		if (!value) {
 			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPickUp(value));
+			dispatch(orderActions.setPoint(null));
 		}
 
 		if (value) {
 			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPickUp(value));
+			dispatch(orderActions.setPoint(value));
 		}
 	};
 
@@ -54,8 +52,8 @@ export const CityAndPickUp = () => {
 				<CityAndPickUpTitle>{TEXT.city}</CityAndPickUpTitle>
 				<StyledAutocomplete
 					id="combo-box-demo"
-					options={city}
-					getOptionLabel={(option) => option.title}
+					options={order.cities || []}
+					getOptionLabel={(option) => option.name}
 					forcePopupIcon={false}
 					value={order.city}
 					onChange={handleCityChose}
@@ -69,10 +67,14 @@ export const CityAndPickUp = () => {
 				<CityAndPickUpTitle>{TEXT.pickup}</CityAndPickUpTitle>
 				<StyledAutocomplete
 					id="combo-box-demo"
-					options={order.city?.pickups || []}
-					getOptionLabel={(option: PickUpType) => option.title}
+					options={
+						order.points?.filter(
+							(point) => point.cityId && order.city && point.cityId.name === order.city?.name
+						) || []
+					}
+					getOptionLabel={(option: PointDBType) => option.address}
 					forcePopupIcon={false}
-					value={order.pickup}
+					value={order.point}
 					onChange={handlePickUpChose}
 					renderInput={(params) => (
 						<TextField {...params} placeholder={TEXT.chosePickUp} variant="standard" />
@@ -82,10 +84,6 @@ export const CityAndPickUp = () => {
 		</CityAndPickUpContainer>
 	);
 };
-
-// const useStyles = makeStyles({
-//   button
-// })
 
 const StyledAutocomplete: typeof Autocomplete = styled(Autocomplete)`
 	min-width: 224px;
@@ -157,74 +155,3 @@ const StyledAutocomplete: typeof Autocomplete = styled(Autocomplete)`
 		border-bottom: 2px solid ${COLORS.green};
 	}
 `;
-
-const city: CityType[] = [
-	{
-		title: "Ульяновск",
-		id: "1",
-		coordinates: [54.330056, 48.389127],
-		pickups: [
-			{
-				title: "проспект Нариманова, 1 ст2",
-				id: "11",
-				coordinates: [54.333551, 48.384378],
-			},
-			{
-				title: "​улица Островского, 20",
-				id: "12",
-				coordinates: [54.326695, 48.394832],
-			},
-		],
-	},
-	{
-		title: "Самара",
-		id: "2",
-		coordinates: [53.210548, 50.133757],
-		pickups: [
-			{
-				title: "Лесная улица, 33",
-				id: "13",
-				coordinates: [53.215478, 50.134096],
-			},
-			{
-				title: "проспект Ленина, 1",
-				id: "14",
-				coordinates: [53.205167, 50.133539],
-			},
-		],
-	},
-	{
-		title: "Москва",
-		id: "3",
-		coordinates: [55.755814, 37.617635],
-		pickups: [
-			{
-				title: "Тверская улица, 6с6",
-				id: "15",
-				coordinates: [55.760597, 37.611719],
-			},
-			{
-				title: "​Малый Черкасский переулок, 2",
-				id: "16",
-				coordinates: [55.758339, 37.626018],
-			},
-		],
-	},
-	{
-		title: "Санкт-Петербург",
-		id: "4",
-		coordinates: [59.939095, 30.315868],
-		pickups: [
-			{
-				title: "Большая Конюшенная улица, 1",
-				id: "17",
-				coordinates: [59.940738, 30.323762],
-			},
-			{
-				title: "Малая Морская улица, 6",
-				id: "18",
-				coordinates: [59.935567, 30.314901],
-			},
-		],
-	},
-];

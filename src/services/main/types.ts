@@ -1,4 +1,4 @@
-import { CarDBType, CityDBType } from 'store/order/types';
+import { CarDBType, CityDBType, PointDBType } from 'store/order/types';
 
 export type getCarsType = {
   count: number;
@@ -58,6 +58,32 @@ export type getCitiesType = {
   count: number;
   data: CityDBType[];
   fields: {
+    name: {
+      name: string,
+      required: boolean,
+      type: string
+    }
+  }
+}
+export type getPointsType = {
+  count: number;
+  data: PointDBType[];
+  fields: {
+    address:{
+      name: string,
+      required: boolean,
+      type: string
+    },
+    cityId: {
+      name: string,
+      populate: {
+        filter: string,
+        select: string[]
+      }
+      ref: string,
+      required: boolean,
+      type: string
+    }
     name: {
       name: string,
       required: boolean,

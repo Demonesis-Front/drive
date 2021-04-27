@@ -39,14 +39,14 @@ export const TotalMobile = () => {
 						<TotalDetailContainer right={true}>
 							{/* <TotalDetailTitle></TotalDetailTitle> */}
 							{/* <TotalDetailBorderBottom /> */}
-							<TotalDetail>{order.city.title}</TotalDetail>
+							<TotalDetail>{order.city.name}</TotalDetail>
 						</TotalDetailContainer>
 					)}
-					{order.pickup && (
+					{order.point && (
 						<TotalDetailContainer>
 							<TotalDetailTitle>{TEXT.pickup}</TotalDetailTitle>
 							<TotalDetailBorderBottom />
-							<TotalDetail>{order.pickup.title}</TotalDetail>
+							<TotalDetail>{order.point.name}</TotalDetail>
 						</TotalDetailContainer>
 					)}
 
@@ -59,7 +59,7 @@ export const TotalMobile = () => {
 					)}
 
 					{/* Total */}
-					{order.pickup && order.car && (
+					{order.point && order.car && (
 						<TotalPrice>
 							<TotalPriceTitle>{TEXT.price + ": "}</TotalPriceTitle>
 							{TEXT.from +
@@ -77,10 +77,10 @@ export const TotalMobile = () => {
 			<TotalMobileButton onClick={handlerShowOrder}>{TEXT.order}</TotalMobileButton>
 
 			{/* stage 1 */}
-			{order.stage === 1 && !order.pickup && (
+			{order.stage === 1 && !order.point && (
 				<OrderMobileButton color={"grey"}>{TEXT.choseModel}</OrderMobileButton>
 			)}
-			{order.stage === 1 && order.pickup && (
+			{order.stage === 1 && order.point && (
 				<OrderMobileButton
 					color={"green"}
 					onClick={() => handleButton(order.stage + 1)}

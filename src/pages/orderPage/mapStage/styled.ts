@@ -9,3 +9,6 @@ export const MapBox = styled.div`
     display: flex;
   }
 `
+export const CircularContainer = styled.div`
+  padding: 10px;
+`

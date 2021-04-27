@@ -20,7 +20,7 @@ export const Stages = () => {
 				dispatch(orderActions.setStage(position));
 				break;
 			case 2:
-				order.pickup && dispatch(orderActions.setStage(position));
+				order.point && dispatch(orderActions.setStage(position));
 				break;
 			case 3:
 				order.car && dispatch(orderActions.setStage(position));
@@ -35,13 +35,13 @@ export const Stages = () => {
 			case 1:
 				return false;
 			case 2:
-				return order.city && order.pickup ? false : true;
+				return order.city && order.point ? false : true;
 			case 3:
-				return order.city && order.pickup && order.car ? false : true;
+				return order.city && order.point && order.car ? false : true;
 
 			// TODO: will be implemented after V-04
 			// case 4:
-			//   return order.pickup ? false : false
+			//   return order.point ? false : false
 
 			default:
 				return true;

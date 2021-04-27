@@ -35,14 +35,14 @@ export const Total = () => {
 					<TotalDetailContainer right={true}>
 						{/* <TotalDetailTitle></TotalDetailTitle> */}
 						{/* <TotalDetailBorderBottom /> */}
-						<TotalDetail>{order.city.title}</TotalDetail>
+						<TotalDetail>{order.city.name}</TotalDetail>
 					</TotalDetailContainer>
 				)}
-				{order.pickup && (
+				{order.point && (
 					<TotalDetailContainer>
 						<TotalDetailTitle>{TEXT.pickup}</TotalDetailTitle>
 						<TotalDetailBorderBottom />
-						<TotalDetail>{order.pickup.title}</TotalDetail>
+						<TotalDetail>{order.point.address}</TotalDetail>
 					</TotalDetailContainer>
 				)}
 
@@ -55,7 +55,7 @@ export const Total = () => {
 				)}
 
 				{/* Total */}
-				{order.pickup && order.car && (
+				{order.point && order.car && (
 					<TotalPrice>
 						<TotalPriceTitle>{TEXT.price + ": "}</TotalPriceTitle>
 						{TEXT.from +
@@ -69,10 +69,10 @@ export const Total = () => {
 				)}
 
 				{/* stage 1 */}
-				{order.stage === 1 && !order.pickup && (
+				{order.stage === 1 && !order.point && (
 					<OrderButton color={"grey"}>{TEXT.choseModel}</OrderButton>
 				)}
-				{order.stage === 1 && order.pickup && (
+				{order.stage === 1 && order.point && (
 					<OrderButton color={"green"} onClick={() => handleButton(order.stage + 1)}>
 						{TEXT.choseModel}
 					</OrderButton>

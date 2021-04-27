@@ -25,7 +25,8 @@ export const HomePage = () => {
 		<HomePageContainer>
 			<SectionContainer>
 				<Header />
-
+				{/* <button onClick={() => PositionStack.getPoints()}>GEO</button>
+				<button onClick={() => DBService.getCities()}>CITY</button> */}
 				<OfferContainer>
 					<OfferTitle>{TEXT.carsharing}</OfferTitle>
 					<OfferSubTitle>{TEXT.needDrive}</OfferSubTitle>

@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
-import { PickUpType } from "store/order/types";
+import { PointDBType } from "store/order/types";
 import Leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+
 import "leaflet/dist/leaflet.css";
 
 import icon from "assets/marker.png";
@@ -43,38 +44,41 @@ export const MapComponent = () => {
 	const dispatch = useDispatch();
 	const [position] = useState<LatLngExpression>([53.205167, 50.133539]);
 
-	const markerHandler = (pickup: PickUpType) => {
-		console.log("click");
-
-		dispatch(orderActions.setPickUp(pickup));
+	const markerHandler = (point: PointDBType) => {
+		dispatch(orderActions.setPoint(point));
 	};
 
 	return (
 		<>
 			<MapContainer
-				style={{ height: "352px", width: "100%", maxWidth: "700px" }}
-				center={order.city?.coordinates}
+				style={{ height: "552px", width: "100%", maxWidth: "700px" }}
+				center={order.city?.coordinates || position}
 				zoom={12}
 				scrollWheelZoom={false}
 			>
-				<MyComponent center={order.city?.coordinates || position} zoom={12} />
+				<MyComponent center={order.city?.coordinates || position} zoom={10} />
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
 
-				{order.city &&
-					order.city?.pickups.map((marker: PickUpType) => (
-						<Marker
-							key={marker.id}
-							position={marker.coordinates}
-							eventHandlers={{
-								click: () => markerHandler(marker),
-							}}
-						>
-							<Popup>{marker.title}</Popup>
-						</Marker>
-					))}
+				{order.points &&
+					order.points
+						.filter((point) => point.cityId && point.cityId.name === order.city?.name)
+						.map(
+							(point: PointDBType) =>
+								point.coordinates && (
+									<Marker
+										key={point.id}
+										position={point.coordinates || position}
+										eventHandlers={{
+											click: () => markerHandler(point),
+										}}
+									>
+										<Popup>{point.address}</Popup>
+									</Marker>
+								)
+						)}
 			</MapContainer>
 		</>
 	);

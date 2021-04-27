@@ -54,16 +54,29 @@ export type CityDBType = {
   id: string,
   name: string,
   updatedAt: number,
+  coordinates?: LatLngExpression
+}
+export type PointDBType = {
+  address: string,
+  cityId: {
+    id: string,
+    name: string,
+  },
+  name: string,
+  id: number,
+  coordinates?: LatLngExpression
 }
 
 export type OrderState = {
   data: {
-    city: CityType | null,
-    cities: any | null,
-    pickup: PickUpType | null,
+    city: CityDBType | null,
+    cities: CityDBType[] | null,
+    point: PointDBType | null,
+    points: PointDBType[] | null,
     stage: number,
     car: CarDBType | null,
     cars: CarDBType[] | null,
-  }
+  },
+  loading: boolean;
 }
 

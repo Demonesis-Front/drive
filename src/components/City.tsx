@@ -11,7 +11,7 @@ export const City = () => {
 	return (
 		<CityContainer>
 			<MarkMap />
-			{order.city?.title ? order.city?.title : CITY.Ulyanovsk}
+			{order.city?.name ? order.city?.name : CITY.Ulyanovsk}
 		</CityContainer>
 	);
 };
