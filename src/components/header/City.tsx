@@ -1,7 +1,7 @@
 import React from "react";
-import { CityContainer } from "components/typography";
+import { CityContainer } from "./styled";
 import { CITY } from "constants/city";
-import { MarkMap } from "components/icons";
+import { MarkMap } from "common/icons";
 import { useSelector } from "react-redux";
 import { getOrder } from "store/order/selectors";
 

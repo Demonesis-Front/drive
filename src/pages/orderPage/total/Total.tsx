@@ -6,16 +6,14 @@ import {
 	TotalContainer,
 	TotalDetailContainer,
 	TotalMainContainer,
-} from "components/containers";
-import {
 	TotalTitle,
 	TotalDetail,
 	TotalDetailBorderBottom,
 	TotalPrice,
 	TotalPriceTitle,
 	TotalDetailTitle,
-} from "components/typography";
-import { OrderButton } from "components/buttons/buttons";
+} from "./styled";
+import { OrderButton } from "common/buttons";
 import { TEXT } from "constants/text";
 
 export const Total = () => {

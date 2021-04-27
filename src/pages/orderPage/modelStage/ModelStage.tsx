@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
+import { StageContainer } from "./../styled";
 import {
 	CarTypeContainer,
 	CarTitleContainer,
-	StageContainer,
 	CarCardContainer,
 	CarCard,
 	CarImage,
-} from "components/containers";
-import { CarTitle, CarSubTitle, CarTypeTitle } from "components/typography";
-import { CarTypeIcon } from "components/icons";
+	CarTitle,
+	CarSubTitle,
+	CarTypeTitle,
+} from "./styled";
+import { CarTypeIcon } from "common/icons";
 import { url } from "services/main/service";
 import { CarDBType } from "store/order/types";
 

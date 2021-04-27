@@ -6,8 +6,11 @@ import { getOrder } from "store/order/selectors";
 import styled from "styled-components";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
-import { CityAndPickUpContainer, CityContainer } from "components/containers";
-import { CityAndPickUpTitle } from "components/typography";
+import {
+	CityAndPickUpContainer,
+	CityContainer,
+	CityAndPickUpTitle,
+} from "./styled";
 import { TEXT } from "constants/text";
 import { COLORS } from "constants/colors";
 

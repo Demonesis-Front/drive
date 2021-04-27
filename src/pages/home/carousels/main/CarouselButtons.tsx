@@ -1,9 +1,6 @@
 import React, { CSSProperties } from "react";
-import { CarouselButtonContainer } from "components/containers";
-import {
-	CarouselLeftButton,
-	CarouselRightButton,
-} from "components/buttons/buttons";
+import { CarouselButtonContainer } from "./styled";
+import { CarouselLeftButton, CarouselRightButton } from "common/buttons";
 
 type CarouselButtonsType = {
 	index: number;

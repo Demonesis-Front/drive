@@ -5,12 +5,13 @@ import {
 	SliderContainer,
 	SliderTextContainer,
 	SliderLinerGradient,
-} from "components/containers";
+	SliderTitle,
+	SliderSubTitle,
+} from "./styled";
 import { CarouselButtons as Buttons } from "./CarouselButtons";
 import { IndicatorDots } from "./IndicatorDots";
 import { carouselData } from "./mock";
-import { SliderTitle, SliderSubTitle } from "components/typography";
-import { SliderButton } from "components/buttons/buttons";
+import { SliderButton } from "common/buttons";
 
 export const HomeCarousel = () => {
 	return (

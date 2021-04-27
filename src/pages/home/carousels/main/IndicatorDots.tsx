@@ -1,6 +1,6 @@
 import React from "react";
-import { CarouselIndicator as Dot } from "components/buttons/buttons";
-import { IndicatorContainer } from "components/containers";
+import { CarouselIndicator as Dot } from "common/buttons";
+import { IndicatorContainer } from "./styled";
 
 type IndicatorDotsPropsType = {
 	total: number;

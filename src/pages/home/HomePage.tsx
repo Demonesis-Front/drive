@@ -4,8 +4,8 @@ import {
 	SectionContainer,
 	OfferContainer,
 	FooterContainer,
-} from "components/containers";
-import { BookButton } from "components/buttons/buttons";
+} from "common/containers";
+import { BookButton } from "common/buttons";
 
 import {
 	OfferTitle,
@@ -13,20 +13,18 @@ import {
 	OfferDescription,
 	LicenseText,
 	TelephoneNumber,
-} from "components/typography";
+} from "./styled";
 import { TEXT } from "constants/text";
-import { HomeCarousel } from "components/carousels/main/HomeCarousel";
-import { Header } from "components/Header";
+import { HomeCarousel } from "pages/home/carousels/main/HomeCarousel";
+import { Header } from "components/header/Header";
 import { PATH } from "navigation/path";
-import { LinkContainer } from "components/LinkContainer";
+import { LinkContainer } from "components/link/LinkContainer";
 
 export const HomePage = () => {
 	return (
 		<HomePageContainer>
 			<SectionContainer>
 				<Header />
-				{/* <button onClick={() => PositionStack.getPoints()}>GEO</button>
-				<button onClick={() => DBService.getCities()}>CITY</button> */}
 				<OfferContainer>
 					<OfferTitle>{TEXT.carsharing}</OfferTitle>
 					<OfferSubTitle>{TEXT.needDrive}</OfferSubTitle>

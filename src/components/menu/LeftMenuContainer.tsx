@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { PopUp100, MenuContainer } from "components/containers";
-import { LanguageMenu } from "components/typography";
-import { HamburgerMenu, ClosePopUp } from "components/icons";
+import { PopUp100, MenuContainer } from "common/containers";
+import { LanguageMenu } from "./styled";
+import { HamburgerMenu, ClosePopUp } from "common/icons";
 import { LANGUAGES } from "constants/languages";
 import { LeftMenu } from "components/menu/LeftMenu";
 

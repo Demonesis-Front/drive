@@ -6,13 +6,13 @@ import {
 	OrderPageContent,
 	OrderNavigationContainer,
 	OrderNavigationContainerBorder,
-} from "components/containers";
-import { Header } from "components/Header";
+	StageContentContainer,
+} from "./styled";
+import { Header } from "components/header/Header";
 import { Stages } from "./stages/Stages";
 import { MapStage } from "pages/orderPage/mapStage/MapStage";
-import { ModelStage } from "pages/orderPage/modalStage/ModelStage";
+import { ModelStage } from "pages/orderPage/modelStage/ModelStage";
 import { AdditionallyStage } from "pages/orderPage/additionallyStage/AdditionallyStage";
-import { StageContentContainer } from "components/containers";
 import { Total } from "pages/orderPage/total/Total";
 import { TotalMobile } from "pages/orderPage/total/TotalMobile";
 import { getOrder } from "store/order/selectors";

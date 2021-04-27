@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from 'axios'
 import {getCarsType, getCitiesType, getPointsType} from './types'
 
 
-export const url = 'https://api-factory.simbirsoft1.com/'
+export const url = 'https://api-factory.simbirsoft1.com'
 export const DBurl = 'https://api-factory.simbirsoft1.com/api/db'
 export const path = {
   car: '/car',

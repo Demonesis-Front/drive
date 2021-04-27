@@ -6,17 +6,15 @@ import {
 	TotalDetailContainer,
 	TotalMobileMainContainer,
 	TotalMobileContainer,
-} from "components/containers";
-import {
 	TotalTitle,
 	TotalDetail,
 	TotalDetailBorderBottom,
 	TotalPrice,
 	TotalPriceTitle,
 	TotalDetailTitle,
-} from "components/typography";
+} from "./styled";
 import { TotalMobileButton } from "./styled";
-import { OrderMobileButton } from "components/buttons/buttons";
+import { OrderMobileButton } from "common/buttons";
 import { TEXT } from "constants/text";
 
 export const TotalMobile = () => {
