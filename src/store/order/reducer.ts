@@ -1,49 +1,55 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {OrderState} from './types'
+import {OrderState, CityDBType, CarDBType, PointDBType} from './types'
+
 
 const initialState: OrderState = {
   data: {
     city: {
-      title: "Ульяновск",
-      id: "1",
+      createdAt: 1223444,
+      updatedAt: 1231233,
+      id: '12',
+      name: "Ульяновск",
       coordinates: [54.330056, 48.389127],
-      pickups: [
-        {
-          title: "проспект Нариманова, 1 ст2",
-          id: "11",
-          coordinates: [54.333551, 48.384378],
-        },
-        {
-          title: "​улица Островского, 20",
-          id: "12",
-          coordinates: [54.326695, 48.394832],
-        },
-      ],
     },
-    pickup: null,
+    cities: null,
+    point: null,
+    points: null,
     stage: 1,
     car: null,
     cars: null,
-  }
+  },
+  loading: true,
 }
 const orderSlice = createSlice({
   name: 'order',
   initialState,
   reducers:{
     init: (state) => state,
-    setCity: (state, action: PayloadAction<any>) => {
+    loading: (state) => {
+      state.loading = true
+    },
+    success: (state) => {
+      state.loading = false
+    },
+    setCity: (state, action: PayloadAction<CityDBType | null>) => {
       state.data.city = action.payload
     },
-    setPickUp: (state, action: PayloadAction<any>) => {
-      state.data.pickup = action.payload
+    setCities: (state, action: PayloadAction<any | null>) => {
+      state.data.cities = action.payload
     },
-    setStage: (state, action: PayloadAction<any>) => {
+    setPoint: (state, action: PayloadAction<PointDBType | null>) => {
+      state.data.point = action.payload
+    },
+    setPoints: (state, action: PayloadAction<PointDBType[] | null>) => {
+      state.data.points = action.payload
+    },
+    setStage: (state, action: PayloadAction<number>) => {
       state.data.stage = action.payload
     },
-    setCar: (state, action: PayloadAction<any>) => {
+    setCar: (state, action: PayloadAction<CarDBType | null>) => {
       state.data.car = action.payload
     },
-    setCars: (state, action: PayloadAction<any>) => {
+    setCars: (state, action: PayloadAction<CarDBType[]>) => {
       state.data.cars = action.payload
     },
   }

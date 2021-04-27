@@ -1,24 +1,36 @@
-import axios from 'axios'
+import axios, {AxiosResponse} from 'axios'
+import {getCarsType, getCitiesType, getPointsType} from './types'
 
-export const url = 'https://api-factory.simbirsoft1.com/'
+
+export const url = 'https://api-factory.simbirsoft1.com'
 export const DBurl = 'https://api-factory.simbirsoft1.com/api/db'
 export const path = {
-  car: '/car'
+  car: '/car',
+  city: '/city',
+  point: '/point',
 }
 
-const config = {
-  headers: { 'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b' },
-};
+const instance = axios.create({
+  baseURL: DBurl,
+  timeout: 1000,
+  headers: {'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'}
+})
+
 
 export const DBService = {
+  async getCities(){
+      const {data}: AxiosResponse<getCitiesType> = await instance.get(path.city)
+      
+      return data.data
+    },
+    async getPoints(){
+      const {data}: AxiosResponse<getPointsType> = await instance.get(path.point)
+      
+      return data.data
+  },
   async getCars(){
-    try {
-      const data = await axios.get(DBurl + path.car, config)
-
-      //красиво :)
-      return data.data.data.slice(0, 10)
-    } catch (error) {
-      console.log(error)
-    }
+      const {data}: AxiosResponse<getCarsType> = await instance.get(path.car)
+      
+      return data.data
   }
 }

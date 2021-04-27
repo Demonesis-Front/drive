@@ -4,8 +4,8 @@ import {
 	LeftMenuItem,
 	SocialMenuContainer,
 	SocialRoundContainer,
-} from "components/containers";
-import { TelegramIcon, FacebookIcon, InstagramIcon } from "components/icons";
+} from "./styled";
+import { TelegramIcon, FacebookIcon, InstagramIcon } from "common/icons";
 
 export const LeftMenu = () => {
 	const [active, setActive] = useState("2");
