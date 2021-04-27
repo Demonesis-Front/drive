@@ -56,7 +56,7 @@ export const MapComponent = () => {
 				zoom={12}
 				scrollWheelZoom={false}
 			>
-				<MyComponent center={order.city?.coordinates || position} zoom={10} />
+				<MyComponent center={order.city?.coordinates || position} zoom={12} />
 				<TileLayer
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
