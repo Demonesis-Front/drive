@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
@@ -13,14 +13,24 @@ import {
 	CarSubTitle,
 	CarTypeTitle,
 } from "./styled";
+import { MobileCarType } from "./MobileCarType";
 import { CarTypeIcon } from "common/icons";
-import { url } from "services/main/service";
+import { url } from "services/main/api";
 import { CarDBType } from "store/order/types";
+import { TEXT } from "constants/text";
 
 export const ModelStage = () => {
 	const dispatch = useDispatch();
 	const order = useSelector(getOrder);
 	const [activeType, setActiveType] = useState<string | null>(null);
+
+	useEffect(() => {
+		if (!order.cars) {
+			dispatch(orderActions.initCar());
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	const typeHandler = (type: string | null) => {
 		dispatch(orderActions.setCar(null));
@@ -32,7 +42,6 @@ export const ModelStage = () => {
 	};
 
 	const carHandler = (car: CarDBType) => {
-		// TODO: after stage 3 implemented, need add orderAction.setAdditionally(null)
 		dispatch(orderActions.setCar(car));
 	};
 
@@ -41,7 +50,7 @@ export const ModelStage = () => {
 			return car;
 		}
 
-		if (activeType && car.categoryId.name === activeType) {
+		if (activeType && car.categoryId.id === activeType) {
 			return car;
 		}
 	};
@@ -50,16 +59,28 @@ export const ModelStage = () => {
 		<>
 			<StageContainer>
 				{/* Car type filter */}
-				<CarTypeContainer>
-					{typeMenu.map((el) => (
-						<CarTitleContainer key={el.id} onClick={() => typeHandler(el.type)}>
-							<CarTypeIcon active={activeType === el.type ? true : false} />
-							<CarTypeTitle active={activeType === el.type ? true : false}>
-								{el.title}
+				{order.categories && (
+					<CarTypeContainer>
+						<CarTitleContainer onClick={() => typeHandler(null)}>
+							<CarTypeIcon active={activeType === null ? true : false} />
+							<CarTypeTitle active={activeType === null ? true : false}>
+								{TEXT.allModels}
 							</CarTypeTitle>
 						</CarTitleContainer>
-					))}
-				</CarTypeContainer>
+						{order.categories?.map((category) => (
+							<CarTitleContainer key={category.id} onClick={() => typeHandler(category.id)}>
+								<CarTypeIcon active={activeType === category.id ? true : false} />
+								<CarTypeTitle active={activeType === category.id ? true : false}>
+									{category.name}
+								</CarTypeTitle>
+							</CarTitleContainer>
+						))}
+					</CarTypeContainer>
+				)}
+
+				{/* Mobile Car type */}
+				<MobileCarType options={order.categories} value={activeType} fn={typeHandler} />
+
 				{/* Car grid */}
 				<CarCardContainer>
 					{order.cars?.filter(carFilter).map((car) => (
@@ -80,9 +101,3 @@ export const ModelStage = () => {
 		</>
 	);
 };
-
-const typeMenu = [
-	{ id: "21", title: "Все модели", type: null },
-	{ id: "22", title: "Эконом", type: "Эконом" },
-	{ id: "23", title: "Премиум", type: "Премиум" },
-];

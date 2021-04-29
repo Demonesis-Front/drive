@@ -1,16 +1,4 @@
-import axios from 'axios'
-
-const API_KEY = process.env.REACT_APP_OPENCAGEDATA_API_KEY
-
-export const serviceUrl = 'https://api.opencagedata.com/geocode/v1/json'
-const path ={
-  forward: 'forward'
-}
-
-const instance = axios.create({
-  baseURL: serviceUrl,
-  timeout: 2000,
-})
+import {instance, API_KEY, path} from './api'
 
 const createCityConfig = (city: string) => {
   return {

@@ -38,7 +38,7 @@ export const ClosePopUp = styled(CloseOutline)`
   height: 40px;
   user-select: none; 
   cursor: pointer;
-  z-index: 1003;
+  z-index: 2003;
 `
 
 export const MarkMap = styled(Map)`

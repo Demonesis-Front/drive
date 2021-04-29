@@ -79,6 +79,27 @@ export type RateDBType = {
   },
   updatedAt: number
 }
+export type CategoriesDBType = {
+  createdAt: number
+  description: string
+  id: string
+  name: string
+  updatedAt: number
+}
+
+export type AdditionallyType = {
+  color: string | null,
+  reservedTime: {
+    from: MaterialUiPickersDate,
+    to: MaterialUiPickersDate
+  },
+  price: string | null,
+  services: {
+    isFullTank: boolean,
+    isNeedChildChair: boolean,
+    isRightWheel: boolean,
+  }
+}
 
 export type OrderState = {
   data: {
@@ -89,19 +110,8 @@ export type OrderState = {
     stage: number,
     car: CarDBType | null,
     cars: CarDBType[] | null,
-    additionally: {
-      color: string | null,
-      reservedTime: {
-        from: MaterialUiPickersDate,
-        to: MaterialUiPickersDate
-      },
-      price: string | null,
-      services: {
-        isFullTank: boolean,
-        isNeedChildChair: boolean,
-        isRightWheel: boolean,
-      }
-    },
+    categories: CategoriesDBType[] | null,
+    additionally: AdditionallyType,
     rates: RateDBType[] | null,
     rate: RateDBType | null,
   },

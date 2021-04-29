@@ -112,13 +112,14 @@ export const OrderButton = styled(SliderButton)`
   width: 100%;
   border-radius: 8px;
   min-width: 280px;
-  z-index: 2500;
+  z-index: 1999;
+  cursor: ${(props: SliderButtonType) => props.color === 'grey' ? 'auto' :  'pointer'};
   
   &:hover{
-    filter: brightness(90%);
+    filter: ${(props: SliderButtonType) => props.color === 'grey' ? 'none' :  'brightness(90%)'};
   }
   &:active{
-    filter: brightness(80%);
+    filter: ${(props: SliderButtonType) => props.color === 'grey' ? 'none' :  'brightness(80%)'};
   }
 
 

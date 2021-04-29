@@ -6,19 +6,19 @@ type ActiveType = {
 }
 
 export const LanguageMenu = styled.div`
-position: fixed;
-left: 8px;
-bottom: 18px;
+  position: fixed;
+  left: 8px;
+  bottom: 18px;
   font-size: 13px;
   color: ${COLORS.white};
-  font-weight: 900;
+  font-weight: 700;
   text-align: center;
   cursor: pointer;
   user-select: none;
   border-radius: 50%;
   padding: 13px 10px;
   border: 1px solid transparent;
-  z-index: 1002;
+  z-index: ${(props: ActiveType) => props.active ? '200' : '2002'};
 
   &:hover{
     border: 1px solid ${COLORS.white};
@@ -30,11 +30,12 @@ bottom: 18px;
 
   @media (max-width: 500px) {
     display: ${(props: ActiveType) => props.active ? 'block' : 'none'};
+    z-index: 2002;
   }
 `
 
 export const LeftMenuList = styled.ul`
-  z-index: 1001;
+  z-index: 2002;
   position: absolute;
   left: 20px;
   top: 100px;
@@ -66,7 +67,7 @@ export const LeftMenuItem = styled.li`
 `
 
 export const SocialMenuContainer = styled.div`
-  z-index: 1001;
+  z-index: 2002;
   position: absolute;
   left: 65px;
   top: 300px;

@@ -1,21 +1,8 @@
-import axios, {AxiosResponse} from 'axios'
-import {getCarsType, getCitiesType, getPointsType, getRatesType} from './types'
+import {AxiosResponse} from 'axios'
+import {getCarsType, getCitiesType, getPointsType, getRatesType, getCategoriesType} from './types'
+import {instance, path} from './api'
 
 
-export const url = 'https://api-factory.simbirsoft1.com'
-export const DBurl = 'https://api-factory.simbirsoft1.com/api/db'
-export const path = {
-  car: '/car',
-  city: '/city',
-  point: '/point',
-  rate: '/rate',
-}
-
-const instance = axios.create({
-  baseURL: DBurl,
-  timeout: 1000,
-  headers: {'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b'}
-})
 
 
 export const DBService = {
@@ -38,5 +25,10 @@ export const DBService = {
       const {data}: AxiosResponse<getRatesType> = await instance.get(path.rate)
       
       return data.data
-  }
+  },
+  async getCategories(){
+      const {data}: AxiosResponse<getCategoriesType> = await instance.get(path.category)
+      
+      return data.data
+  },
 }

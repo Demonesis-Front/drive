@@ -1,6 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType} from './types'
+import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType, AdditionallyType} from './types'
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
+
+
+
+const initialAdditionally: AdditionallyType = {
+  color: null,
+  reservedTime: {
+    from: null,
+    to: null
+  },
+  price: null,
+  services: {
+    isFullTank: false,
+    isNeedChildChair: false,
+    isRightWheel: false,
+  }
+}
 
 const initialState: OrderState = {
   data: {
@@ -17,19 +33,8 @@ const initialState: OrderState = {
     stage: 1,
     car: null,
     cars: null,
-    additionally: {
-      color: null,
-      reservedTime: {
-        from: null,
-        to: null
-      },
-      price: null,
-      services: {
-        isFullTank: false,
-        isNeedChildChair: false,
-        isRightWheel: false,
-      }
-    },
+    categories: null,
+    additionally: initialAdditionally,
     rates: null,
     rate: null
   },
@@ -40,6 +45,9 @@ const orderSlice = createSlice({
   initialState,
   reducers:{
     init: (state) => state,
+    initMap: (state) => state,
+    initCar: (state) => state,
+    initAdditionally: (state) => state,
     loading: (state) => {
       state.loading = true
     },
@@ -47,12 +55,17 @@ const orderSlice = createSlice({
       state.loading = false
     },
     setCity: (state, action: PayloadAction<CityDBType | null>) => {
+      state.data.car = null
+      state.data.point = null
+      state.data.additionally = initialAdditionally
       state.data.city = action.payload
     },
     setCities: (state, action: PayloadAction<any | null>) => {
       state.data.cities = action.payload
     },
     setPoint: (state, action: PayloadAction<PointDBType | null>) => {
+      state.data.car = null
+      state.data.additionally = initialAdditionally
       state.data.point = action.payload
     },
     setPoints: (state, action: PayloadAction<PointDBType[] | null>) => {
@@ -62,10 +75,14 @@ const orderSlice = createSlice({
       state.data.stage = action.payload
     },
     setCar: (state, action: PayloadAction<CarDBType | null>) => {
+      state.data.additionally = initialAdditionally
       state.data.car = action.payload
     },
     setCars: (state, action: PayloadAction<CarDBType[]>) => {
       state.data.cars = action.payload
+    },
+    setCategories: (state, action: PayloadAction<any>) => {
+      state.data.categories = action.payload
     },
     setColor: (state, action: PayloadAction<string>) => {
       state.data.additionally.color = action.payload

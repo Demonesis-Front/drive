@@ -7,11 +7,11 @@ type StageTitlePropsType = {
 }
 
 export const OrderPageContainer = styled.main`
-  width: auto;
   flex-grow: 1;
   display: flex;
   justify-content: center;
   margin-left: 64px;
+  
 
   @media (max-width: 500px) {
     margin-left: 0px;
@@ -28,12 +28,15 @@ export const OrderPageContent = styled.div`
   padding-left: 64px;
   padding-right: 64px;
 
+  @media (max-width: 1100px) {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
   @media (max-width: 800px) {
     padding-left: 20px;
     padding-right: 20px;
   }
   @media (max-width: 500px) {
-    width: auto;
     display: flex;
     flex-direction: column;
     padding-left: 10px;
@@ -59,15 +62,17 @@ export const OrderNavigationContainer = styled.div`
 export const OrderNavigationContainerBorder = styled.div`
   position: absolute;
   left: 64px;
-  top: 94px;
+  top: 82px;
   width: calc(100% - 64px);
   height: 32px;
   border-bottom: 1px solid ${COLORS.lightGrey};
   border-top: 1px solid ${COLORS.lightGrey};
   z-index: 1;
 
-  @media (max-width: 800px) {
-    display: none;
+  @media (max-width: 500px) {
+    width: 100%;
+    left: 0px;
+    top: 90px;
   }
 `
 
