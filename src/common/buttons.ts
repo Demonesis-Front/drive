@@ -109,9 +109,10 @@ export const SliderButton = styled.div`
 `
 
 export const OrderButton = styled(SliderButton)`
-  width: calc(100% - 30px);
-  margin: 30px;
+  width: 100%;
   border-radius: 8px;
+  min-width: 280px;
+  z-index: 2500;
   
   &:hover{
     filter: brightness(90%);
@@ -122,17 +123,21 @@ export const OrderButton = styled(SliderButton)`
 
 
   @media (max-width: 1000px) {
-    width: 100%;
-    margin: 0;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    position: fixed;
+    bottom: 40px;
+    left: calc(50% + 32px);
+    width: 240px;
+    transform: translateX(-50%);
   }
 
   @media (max-width: 500px) {
-    width: auto;
-    flex-grow: 1;
-    margin: 30px 30px;
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    width: 240px;
+    transform: translateX(-50%);
   }
+
 `
 
 export const OrderMobileButton = styled(SliderButton)`

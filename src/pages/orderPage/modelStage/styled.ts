@@ -21,10 +21,18 @@ export const CarTitleContainer = styled.div`
   margin-right: 16px;
 `
 
+export const CarTypeTitle = styled.div`
+  font-size: 14px;
+  font-weight: 400;
+  color: ${(props: ActiveType) => props.active ? COLORS.black : COLORS.grey};
+  cursor: pointer;
+`
+
 export const CarCardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  width: 760px;
+  padding-right: 32px;
+  /* width: 760px; */
 
   @media (max-width: 950px) {
     justify-content: center;
@@ -33,7 +41,8 @@ export const CarCardContainer = styled.div`
 `
 
 export const CarCard = styled.div`
-  width: 368px;
+  max-width: 368px;
+  flex-grow: 1;
   height: 224px;
   border-width: 1px;
   border-style: solid;
@@ -75,10 +84,4 @@ export const CarSubTitle = styled.div`
   font-size: 14px;
   font-weight: 400;
   color: ${COLORS.grey};
-`
-export const CarTypeTitle = styled.div`
-  font-size: 14px;
-  font-weight: 400;
-  color: ${(props: ActiveType) => props.active ? COLORS.black : COLORS.grey};
-  cursor: pointer;
 `

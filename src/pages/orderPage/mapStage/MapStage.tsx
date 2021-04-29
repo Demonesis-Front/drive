@@ -4,17 +4,17 @@ import { getOrderStatus } from "store/order/selectors";
 import { CityAndPickUp } from "./CityAndPickUp";
 import { MapComponent } from "./MapComponent";
 import { StageContainer } from "./../styled";
-import { MapBox, CircularContainer } from "./styled";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import { MapBox } from "./styled";
+import { CircularLoader } from "components/loader/CircularLoader";
 
 export const MapStage = () => {
 	const orderStatus = useSelector(getOrderStatus);
 
 	if (orderStatus) {
 		return (
-			<CircularContainer>
-				<CircularProgress />
-			</CircularContainer>
+			<StageContainer>
+				<CircularLoader />
+			</StageContainer>
 		);
 	}
 

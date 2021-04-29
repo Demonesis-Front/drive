@@ -1,4 +1,5 @@
 import { LatLngExpression } from "leaflet";
+import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 
 export type CarType = {
   id: string;
@@ -67,6 +68,18 @@ export type PointDBType = {
   coordinates?: LatLngExpression
 }
 
+export type RateDBType = {
+  createdAt: number
+  id: string
+  price: number
+  rateTypeId:{
+    id: string
+    name: string
+    unit: string
+  },
+  updatedAt: number
+}
+
 export type OrderState = {
   data: {
     city: CityDBType | null,
@@ -76,7 +89,23 @@ export type OrderState = {
     stage: number,
     car: CarDBType | null,
     cars: CarDBType[] | null,
+    additionally: {
+      color: string | null,
+      reservedTime: {
+        from: MaterialUiPickersDate,
+        to: MaterialUiPickersDate
+      },
+      price: string | null,
+      services: {
+        isFullTank: boolean,
+        isNeedChildChair: boolean,
+        isRightWheel: boolean,
+      }
+    },
+    rates: RateDBType[] | null,
+    rate: RateDBType | null,
   },
   loading: boolean;
 }
+
 
