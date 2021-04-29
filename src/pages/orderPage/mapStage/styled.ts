@@ -36,9 +36,6 @@ export const MapBox = styled.div`
     display: flex;
   }
 `
-export const CircularContainer = styled.div`
-  padding: 10px;
-`
 
 export const CityAndPickUpTitle = styled.div`
   font-size: 14px;

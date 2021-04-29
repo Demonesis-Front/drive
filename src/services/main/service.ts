@@ -1,5 +1,5 @@
 import axios, {AxiosResponse} from 'axios'
-import {getCarsType, getCitiesType, getPointsType} from './types'
+import {getCarsType, getCitiesType, getPointsType, getRatesType} from './types'
 
 
 export const url = 'https://api-factory.simbirsoft1.com'
@@ -8,6 +8,7 @@ export const path = {
   car: '/car',
   city: '/city',
   point: '/point',
+  rate: '/rate',
 }
 
 const instance = axios.create({
@@ -30,6 +31,11 @@ export const DBService = {
   },
   async getCars(){
       const {data}: AxiosResponse<getCarsType> = await instance.get(path.car)
+      
+      return data.data
+  },
+  async getRates(){
+      const {data}: AxiosResponse<getRatesType> = await instance.get(path.rate)
       
       return data.data
   }

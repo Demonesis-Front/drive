@@ -1,7 +1,9 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { getOrder } from "store/order/selectors";
-import { orderActions } from "store/order/reducer";
+import { TotalButton } from "./TotalButton";
+import { TotalPrice } from "./TotalPrice";
+import { TotalDuration } from "./TotalDuration";
 import {
 	TotalContainer,
 	TotalDetailContainer,
@@ -9,30 +11,24 @@ import {
 	TotalTitle,
 	TotalDetail,
 	TotalDetailBorderBottom,
-	TotalPrice,
-	TotalPriceTitle,
 	TotalDetailTitle,
 } from "./styled";
-import { OrderButton } from "common/buttons";
 import { TEXT } from "constants/text";
 
-export const Total = () => {
-	const dispatch = useDispatch();
-	const order = useSelector(getOrder);
+type TotalPropsType = {
+	active: boolean;
+};
 
-	const handleButton = (stage: number) => {
-		dispatch(orderActions.setStage(stage));
-	};
+export const Total = ({ active }: TotalPropsType) => {
+	const order = useSelector(getOrder);
 
 	return (
 		<TotalMainContainer>
-			<TotalContainer>
+			<TotalContainer active={active}>
 				<TotalTitle>{TEXT.totalTitle + ":"}</TotalTitle>
 
 				{order.city && (
 					<TotalDetailContainer right={true}>
-						{/* <TotalDetailTitle></TotalDetailTitle> */}
-						{/* <TotalDetailBorderBottom /> */}
 						<TotalDetail>{order.city.name}</TotalDetail>
 					</TotalDetailContainer>
 				)}
@@ -52,39 +48,56 @@ export const Total = () => {
 					</TotalDetailContainer>
 				)}
 
-				{/* Total */}
-				{order.point && order.car && (
-					<TotalPrice>
-						<TotalPriceTitle>{TEXT.price + ": "}</TotalPriceTitle>
-						{TEXT.from +
-							" " +
-							order.car?.priceMin +
-							" " +
-							TEXT.to +
-							" " +
-							order.car?.priceMax}
-					</TotalPrice>
+				{order.car && order.additionally?.color && (
+					<TotalDetailContainer>
+						<TotalDetailTitle>{TEXT.color}</TotalDetailTitle>
+						<TotalDetailBorderBottom />
+						<TotalDetail>
+							{order.additionally?.color[0].toUpperCase() +
+								order.additionally.color?.slice(1)}
+						</TotalDetail>
+					</TotalDetailContainer>
 				)}
 
-				{/* stage 1 */}
-				{order.stage === 1 && !order.point && (
-					<OrderButton color={"grey"}>{TEXT.choseModel}</OrderButton>
+				{/* Duration */}
+				<TotalDuration />
+
+				{order.car && order.rate && (
+					<TotalDetailContainer>
+						<TotalDetailTitle>{TEXT.rate}</TotalDetailTitle>
+						<TotalDetailBorderBottom />
+						<TotalDetail>{order.rate.rateTypeId.name}</TotalDetail>
+					</TotalDetailContainer>
 				)}
-				{order.stage === 1 && order.point && (
-					<OrderButton color={"green"} onClick={() => handleButton(order.stage + 1)}>
-						{TEXT.choseModel}
-					</OrderButton>
+
+				{order.car && order.additionally?.services.isFullTank && (
+					<TotalDetailContainer>
+						<TotalDetailTitle>{TEXT.fullTank}</TotalDetailTitle>
+						<TotalDetailBorderBottom />
+						<TotalDetail>{TEXT.yes}</TotalDetail>
+					</TotalDetailContainer>
 				)}
-				{/* Stage 2 */}
-				{order.stage === 2 && !order.car && (
-					<OrderButton color={"grey"}>{TEXT.additionally}</OrderButton>
+				{order.car && order.additionally?.services.isNeedChildChair && (
+					<TotalDetailContainer>
+						<TotalDetailTitle>{TEXT.needChildChair}</TotalDetailTitle>
+						<TotalDetailBorderBottom />
+						<TotalDetail>{TEXT.yes}</TotalDetail>
+					</TotalDetailContainer>
 				)}
-				{order.stage === 2 && order.car && (
-					<OrderButton color={"green"} onClick={() => handleButton(order.stage + 1)}>
-						{TEXT.additionally}
-					</OrderButton>
+				{order.car && order.additionally?.services.isRightWheel && (
+					<TotalDetailContainer>
+						<TotalDetailTitle>{TEXT.rightWheel}</TotalDetailTitle>
+						<TotalDetailBorderBottom />
+						<TotalDetail>{TEXT.yes}</TotalDetail>
+					</TotalDetailContainer>
 				)}
+
+				{/* Total */}
+				<TotalPrice />
 			</TotalContainer>
+
+			{/* Button */}
+			<TotalButton />
 		</TotalMainContainer>
 	);
 };

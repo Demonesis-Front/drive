@@ -4,6 +4,9 @@ import {COLORS} from 'constants/colors'
 type RightType = {
   right?: boolean;
 }
+type ActiveType = {
+  active?: boolean;
+}
 
 export const TotalMobileButton = styled.div`
   width: 60px;
@@ -20,26 +23,32 @@ export const TotalMobileButton = styled.div`
   color: ${COLORS.white};
   z-index: 1001;
 
-  @media (max-width: 500px){
+  @media (max-width: 1000px){
     display: flex;
   }
 `
 
 export const TotalMainContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+  border-left: 1px dotted ${COLORS.lightGrey};
+  padding: 0 32px;
 
   @media (max-width: 1300px) {
-    justify-content: center;
+    /* justify-content: center; */
   }
 
   @media (max-width: 1200px) {
-    justify-content: center;
+    /* justify-content: center; */
+  }
+  @media (max-width: 1000px) {
+    border-left: none;
   }
 
   @media (max-width: 500px) {
-    display: none;
-    justify-content: center;
+    /* display: ${(props: ActiveType) => props.active ? 'flex' : 'none' }; */
+    /* justify-content: center; */
   }
 `
 
@@ -50,15 +59,21 @@ export const TotalMobileMainContainer = styled.div`
 export const TotalContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 343px;
-  padding: 32px;
-  border-left: 1px dotted ${COLORS.lightGrey};
+  width: 100%;
+  z-index: 1000;
 
-  @media (max-width: 1300px) {
-    padding: 0;
-  }
   @media (max-width: 1000px) {
-    border-left: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0 20%;
+    background-color: ${COLORS.white};
+    display: ${(props: ActiveType) => props.active ? 'flex' : 'none'};
+  }
+  @media (max-width: 500px) {
+    padding: 4px 30px;
   }
 `
 export const TotalMobileContainer = styled.div`

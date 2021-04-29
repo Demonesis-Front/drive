@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {OrderState, CityDBType, CarDBType, PointDBType} from './types'
-
+import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType} from './types'
+import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 
 const initialState: OrderState = {
   data: {
@@ -17,6 +17,21 @@ const initialState: OrderState = {
     stage: 1,
     car: null,
     cars: null,
+    additionally: {
+      color: null,
+      reservedTime: {
+        from: null,
+        to: null
+      },
+      price: null,
+      services: {
+        isFullTank: false,
+        isNeedChildChair: false,
+        isRightWheel: false,
+      }
+    },
+    rates: null,
+    rate: null
   },
   loading: true,
 }
@@ -51,6 +66,30 @@ const orderSlice = createSlice({
     },
     setCars: (state, action: PayloadAction<CarDBType[]>) => {
       state.data.cars = action.payload
+    },
+    setColor: (state, action: PayloadAction<string>) => {
+      state.data.additionally.color = action.payload
+    },
+    setRates: (state, action: PayloadAction<RateDBType[]>) => {
+      state.data.rates = action.payload
+    },
+    setRate: (state, action: PayloadAction<RateDBType>) => {
+      state.data.rate = action.payload
+    },
+    setFullTank: (state) => {
+      state.data.additionally.services.isFullTank = !state.data.additionally.services.isFullTank
+    },
+    setNeedChildChair: (state) => {
+      state.data.additionally.services.isNeedChildChair = !state.data.additionally.services.isNeedChildChair
+    },
+    setRightWheel: (state) => {
+      state.data.additionally.services.isRightWheel = !state.data.additionally.services.isRightWheel
+    },
+    setDateTimeFrom: (state, action: PayloadAction<MaterialUiPickersDate>) => {
+      state.data.additionally.reservedTime.from = action.payload
+    },
+    setDateToFrom: (state, action: PayloadAction<MaterialUiPickersDate>) => {
+      state.data.additionally.reservedTime.to = action.payload
     },
   }
 })

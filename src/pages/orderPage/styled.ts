@@ -20,6 +20,7 @@ export const OrderPageContainer = styled.main`
 
 export const OrderPageContent = styled.div`
   flex-grow: 1;
+  height: 100%;
   max-width: 1450px;
   display: grid;
   grid-template-rows: auto auto 1fr;
@@ -87,15 +88,16 @@ export const StageContainer = styled.div`
 
   @media (max-width: 1000px) {
     width: 100%;
+    height: 100%;
   }
 `
 
 export const StageContentContainer = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 352px;
 
   @media (max-width: 1310px) {
-    grid-template-columns: 1fr;
+    /* grid-template-columns: 1fr; */
   }
 
   @media (max-width: 1000px) {

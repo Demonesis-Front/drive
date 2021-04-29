@@ -2,7 +2,7 @@ import {put, all, call, takeLatest, delay} from 'redux-saga/effects';
 import { DBService } from 'services/main/service';
 import { ForwardService } from 'services/forward/service';
 import {orderActions} from 'store/order/reducer';
-import { CarDBType, CityDBType, PointDBType } from './types';
+import { CarDBType, CityDBType, PointDBType, RateDBType } from './types';
 import { LatLngExpression } from "leaflet";
 
 export function* orderSagas() {
@@ -35,10 +35,15 @@ function* orderInitSaga() {
         
       }
       yield put(orderActions.setPoints(points));
+
     // Cars
-      const data: CarDBType[] = yield call(DBService.getCars);
-      yield put(orderActions.setCars(data));
+      const cars: CarDBType[] = yield call(DBService.getCars);
+      yield put(orderActions.setCars(cars));
       
+    // Rates
+    const  rates: RateDBType[] = yield call(DBService.getRates)
+    yield put(orderActions.setRates(rates));
+
     yield put(orderActions.success())
   } catch (error) {
     console.log(error)
