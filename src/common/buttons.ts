@@ -112,7 +112,7 @@ export const OrderButton = styled(SliderButton)`
   width: 100%;
   border-radius: 8px;
   min-width: 280px;
-  z-index: 1999;
+  z-index: 1200;
   cursor: ${(props: SliderButtonType) => props.color === 'grey' ? 'auto' :  'pointer'};
   
   &:hover{

@@ -36,14 +36,18 @@ export const TotalButton = () => {
 		);
 	}
 	// stage 3
-	if (
-		order.stage === 3 &&
-		(!order.additionally.reservedTime.from || !order.additionally.reservedTime.to)
-	) {
+	if (order.stage === 3 && !order.rate) {
+		return <OrderButton color={"grey"}>{TEXT.total}</OrderButton>;
+	}
+	if (order.stage === 3 && !order.additionally.reservedTime.from) {
+		return <OrderButton color={"grey"}>{TEXT.total}</OrderButton>;
+	}
+	if (order.stage === 3 && !order.additionally.reservedTime.to) {
 		return <OrderButton color={"grey"}>{TEXT.total}</OrderButton>;
 	}
 	if (
 		order.stage === 3 &&
+		order.rate &&
 		order.additionally.reservedTime.from &&
 		order.additionally.reservedTime.to
 	) {
