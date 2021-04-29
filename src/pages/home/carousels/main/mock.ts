@@ -1,7 +1,7 @@
 export const carouselData = [
   {
     id: '1',
-    image: require('assets/carousel/screen1.png').default,
+    image: require('assets/img/carousel/screen1.png').default,
     title: 'Бесплатная парковка',
     subTitle: 'Оставляйте машину на платных городских парковках и разрешенных местах, не нарушая ПДД, а также в аэропортах',
     buttonText: 'Подробнее',
@@ -9,7 +9,7 @@ export const carouselData = [
   },
   {
     id: '2',
-    image: require('assets/carousel/screen2.png').default,
+    image: require('assets/img/carousel/screen2.png').default,
     title: 'Страховка',
     subTitle: 'Полная страховка автомобиля',
     buttonText: 'Подробнее',
@@ -17,7 +17,7 @@ export const carouselData = [
   },
   {
     id: '3',
-    image: require('assets/carousel/screen3.png').default,
+    image: require('assets/img/carousel/screen3.png').default,
     title: 'Бензин',
     subTitle: 'Полный бак на любой заправке города за наш счёт',
     buttonText: 'Подробнее',
@@ -25,7 +25,7 @@ export const carouselData = [
   },
   {
     id: '4',
-    image: require('assets/carousel/screen4.png').default,
+    image: require('assets/img/carousel/screen4.png').default,
     title: 'Обслуживание',
     subTitle: 'Автомобиль проходит еженедельное ТО',
     buttonText: 'Подробнее',

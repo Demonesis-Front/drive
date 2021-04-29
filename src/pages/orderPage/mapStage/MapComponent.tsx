@@ -3,14 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
 import { PointDBType } from "store/order/types";
+import { MapTitle } from "./styled";
+import { TEXT } from "constants/text";
 import Leaflet, { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 
 import "leaflet/dist/leaflet.css";
 
-import icon from "assets/marker.png";
+import icon from "assets/img/marker.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
-import iconRetina from "assets/marker.png";
+import iconRetina from "assets/img/marker.png";
 
 let DefaultIcon = Leaflet.icon({
 	...Leaflet.Icon.Default.prototype.options,
@@ -50,6 +52,7 @@ export const MapComponent = () => {
 
 	return (
 		<>
+			<MapTitle>{TEXT.choseOnMap + ":"}</MapTitle>
 			<MapContainer
 				style={{ height: "552px", width: "100%", maxWidth: "700px" }}
 				center={order.city?.coordinates || position}

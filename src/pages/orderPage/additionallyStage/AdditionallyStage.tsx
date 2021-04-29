@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
@@ -29,6 +29,14 @@ export const AdditionallyStage = () => {
 	const fullTankHandler = () => dispatch(orderActions.setFullTank());
 	const needChildChairHandler = () => dispatch(orderActions.setNeedChildChair());
 	const rightWheelHandler = () => dispatch(orderActions.setRightWheel());
+
+	useEffect(() => {
+		if (!order.rates) {
+			dispatch(orderActions.initAdditionally());
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<StageContainer>

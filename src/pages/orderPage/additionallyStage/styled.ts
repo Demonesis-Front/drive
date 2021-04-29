@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import {COLORS} from 'constants/colors'
-import {ReactComponent as CheckIcon} from 'assets/CheckIcon.svg'
+import {ReactComponent as CheckIcon} from 'assets/img/CheckIcon.svg'
 
 type ActiveType = {
   active: boolean

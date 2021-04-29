@@ -1,12 +1,13 @@
 import styled from 'styled-components'
 import Select from "@material-ui/core/Select"
 import MenuItem from "@material-ui/core/MenuItem";
-import {COLORS} from 'constants/colors'
 
 export const MobileStageContainer = styled.div`
   display: none;
   @media (max-width: 800px) {
       display: block;
+      z-index: 2;
+      background-color: transparent;
     }
 `
 
@@ -23,9 +24,10 @@ export const StageStyledSelect = styled(Select).attrs({
     font-weight: 700;
     min-width: 100px;
     padding: 10px;
-    background-color: ${COLORS.white};
+    padding-left: 0px;
+    background-color: transparent;
   }
   .root:focus {
-    background-color: ${COLORS.white};
+    background-color: transparent;
   }
 `

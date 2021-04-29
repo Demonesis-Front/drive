@@ -21,11 +21,10 @@ export const LeftMenuContainer = () => {
 				{!popup && <HamburgerMenu onClick={showPopUpHandler} />}
 				{popup && <ClosePopUp onClick={hidePopUpHandler} />}
 				{popup && <LeftMenu />}
-
-				<LanguageMenu active={popup ? true : false} onClick={languageHandler}>
-					{language ? LANGUAGES.eng : LANGUAGES.rus}
-				</LanguageMenu>
 			</MenuContainer>
+			<LanguageMenu active={popup ? true : false} onClick={languageHandler}>
+				{language ? LANGUAGES.eng : LANGUAGES.rus}
+			</LanguageMenu>
 		</>
 	);
 };

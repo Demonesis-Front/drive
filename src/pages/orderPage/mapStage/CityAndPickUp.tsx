@@ -22,17 +22,7 @@ export const CityAndPickUp = () => {
 		event: React.ChangeEvent<{}>,
 		value: CityDBType | null
 	) => {
-		if (!value) {
-			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPoint(null));
-			dispatch(orderActions.setCity(null));
-		}
-
-		if (value) {
-			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPoint(null));
-			dispatch(orderActions.setCity(value));
-		}
+		dispatch(orderActions.setCity(value));
 	};
 	const handlePickUpChose = (
 		event: React.ChangeEvent<{}>,
@@ -53,7 +43,7 @@ export const CityAndPickUp = () => {
 		<CityAndPickUpContainer>
 			<CityContainer>
 				<CityAndPickUpTitle>{TEXT.city}</CityAndPickUpTitle>
-				<StyledAutocomplete
+				<CityAndPickUpAutocomplete
 					id="combo-box-demo"
 					options={order.cities || []}
 					getOptionLabel={(option) => option.name}
@@ -68,7 +58,7 @@ export const CityAndPickUp = () => {
 			{/* PickUp */}
 			<CityContainer>
 				<CityAndPickUpTitle>{TEXT.pickup}</CityAndPickUpTitle>
-				<StyledAutocomplete
+				<CityAndPickUpAutocomplete
 					id="combo-box-demo"
 					options={
 						order.points?.filter(
@@ -88,7 +78,7 @@ export const CityAndPickUp = () => {
 	);
 };
 
-const StyledAutocomplete: typeof Autocomplete = styled(Autocomplete)`
+const CityAndPickUpAutocomplete: typeof Autocomplete = styled(Autocomplete)`
 	min-width: 224px;
 	padding-left: 0px;
 

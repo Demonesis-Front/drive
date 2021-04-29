@@ -41,7 +41,7 @@ export const MenuContainer = styled.nav`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  z-index: 1002;
+  z-index: 2002;
 
   @media (max-width: 500px) {
     width: 0;
@@ -68,7 +68,7 @@ export const SectionContainer = styled.div`
 `
 
 export const HeaderContainer = styled.header`
-  height: 92px;
+  height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -118,7 +118,7 @@ export const PopUp100 = styled.div`
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 1001;
+  z-index: 2001;
 
   @media (max-width: 1550px) {
     background: linear-gradient(90deg, ${COLORS.black} 55%, ${COLORS.lightBlack02});
