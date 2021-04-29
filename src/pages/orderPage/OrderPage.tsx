@@ -46,7 +46,6 @@ export const OrderPage = () => {
 					{order.stage === 4 && <TotalStage />}
 
 					<Total active={showTotalOrder} />
-					{/* <TotalMobile /> */}
 					<TotalMobileButton onClick={showTotalOrderHandler}>
 						{TEXT.order}
 					</TotalMobileButton>
