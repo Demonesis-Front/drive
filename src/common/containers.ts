@@ -75,6 +75,7 @@ export const HeaderContainer = styled.header`
 
   @media (max-width: 500px) {
     padding-right: 30px;
+    height: 62px;
     display: block;
     text-align: end;
   }

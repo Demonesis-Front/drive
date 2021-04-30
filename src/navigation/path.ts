@@ -1,4 +1,5 @@
 export const PATH = {
   home: '/',
-  order: '/order'
+  order: '/order',
+  orderById: '/order/:id',
 }

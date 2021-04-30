@@ -51,10 +51,10 @@ export type CityType = {
 }
 
 export type CityDBType = {
-  createdAt: number,
-  id: string,
-  name: string,
-  updatedAt: number,
+  createdAt: number | null,
+  id: string | null,
+  name: string | null,
+  updatedAt: number | null,
   coordinates?: LatLngExpression
 }
 export type PointDBType = {

@@ -39,8 +39,8 @@ export const OrderPageContent = styled.div`
   @media (max-width: 500px) {
     display: flex;
     flex-direction: column;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 25px;
   }
 `
@@ -52,9 +52,10 @@ export const OrderNavigationContainer = styled.div`
   align-items: center;
 
   @media (max-width: 700px) {
-    height: auto;
+    height: 32px;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
   }
 
 `
@@ -130,3 +131,17 @@ export const StageTitle = styled.div`
     return `color: ${COLORS.black}`
   } }
 `
+
+export const MyOrderStatus = styled.div`
+  display: flex;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 16px;
+`
+
+export const  MyOrderNumber = styled.div`
+  display: flex;
+  font-size: 14px;
+  font-weight: 700;
+`
+

@@ -8,19 +8,18 @@ import {
 	OrderNavigationContainer,
 	OrderNavigationContainerBorder,
 	StageContentContainer,
+	MyOrderNumber,
+	MyOrderStatus,
 } from "./styled";
 import { Header } from "components/header/Header";
-import { Stages } from "./stages/Stages";
-import { MapStage } from "pages/orderPage/mapStage/MapStage";
-import { ModelStage } from "pages/orderPage/modelStage/ModelStage";
-import { AdditionallyStage } from "pages/orderPage/additionallyStage/AdditionallyStage";
 import { TotalStage } from "pages/orderPage/totalStage/TotalStage";
 import { Total } from "pages/orderPage/total/Total";
+import { MyOrderPageButton } from "./MyOrderPageButton";
 import { TotalMobileButton } from "./total/styled";
 import { ShoppingCartIcon } from "common/icons";
-// import { TotalMobile } from "pages/orderPage/total/TotalMobile";
+import { TEXT } from "constants/text";
 
-export const OrderPage = () => {
+export const MyOrderPage = () => {
 	const [showTotalOrder, setShowTotalOrder] = useState<boolean>(false);
 	const order = useSelector(getOrder);
 	const dispatch = useDispatch();
@@ -36,16 +35,17 @@ export const OrderPage = () => {
 			<OrderPageContent>
 				<Header />
 				<OrderNavigationContainer>
-					<Stages />
+					<MyOrderNumber>{TEXT.orderNumber + " " + 123123123}</MyOrderNumber>
 					<OrderNavigationContainerBorder />
 				</OrderNavigationContainer>
 				<StageContentContainer>
-					{order.stage === 1 && <MapStage />}
-					{order.stage === 2 && <ModelStage />}
-					{order.stage === 3 && <AdditionallyStage />}
-					{order.stage === 4 && <TotalStage />}
+					<TotalStage>
+						<MyOrderStatus>Ваш заказ подтверждён ;)</MyOrderStatus>
+					</TotalStage>
 
-					<Total active={showTotalOrder} />
+					<Total active={showTotalOrder}>
+						<MyOrderPageButton />
+					</Total>
 					<TotalMobileButton onClick={showTotalOrderHandler}>
 						<ShoppingCartIcon />
 					</TotalMobileButton>

@@ -83,7 +83,7 @@ const handleColorTypeSliderButton = (color: string) => {
 export const SliderButton = styled.div`
   font-size: 16px;
   font-weight: 500;
-  border-radius: 3px;
+  border-radius: 4px;
   color: ${COLORS.white};
   width: 164px;
   height: 40px;
@@ -91,7 +91,7 @@ export const SliderButton = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
+  margin-top: 32px;
   margin-bottom: 30px;
   user-select: none; 
   cursor: pointer;
@@ -162,4 +162,13 @@ export const OrderMobileButton = styled(SliderButton)`
   @media (max-width: 500px) {
     display: flex
   }
+`
+
+export const TotalPopUpConfirmButton = styled(SliderButton)`
+  border-radius: 8px;
+  font-weight: 400;
+`
+export const TotalPopUpReturnButton = styled(SliderButton)`
+  border-radius: 4px;
+  font-weight: 400;
 `

@@ -15,8 +15,6 @@ export const MobileCarType = ({ options, value, fn }: MobileCarTypeProps) => {
 	const classes = useStyles();
 
 	const handler = (event: React.ChangeEvent<{ value: any }>) => {
-		console.log(event.target.value);
-
 		fn(event.target.value);
 	};
 
@@ -46,6 +44,8 @@ export const MobileCarType = ({ options, value, fn }: MobileCarTypeProps) => {
 const useStyles = makeStyles({
 	select: {
 		background: COLORS.white,
+		maxWidth: "120px",
+		minWidth: "100px",
 		fontSize: "14px",
 		"&:focus": {
 			background: COLORS.white,

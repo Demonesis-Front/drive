@@ -5,7 +5,17 @@ import { OrderButton } from "common/buttons";
 import { TEXT } from "constants/text";
 import { orderActions } from "store/order/reducer";
 
-export const TotalButton = () => {
+type TotalButtonPropsType = {
+	buttonColor: string;
+	buttonText: string;
+	onClickButton?: () => void;
+};
+
+export const TotalButton = ({
+	buttonColor,
+	buttonText,
+	onClickButton,
+}: TotalButtonPropsType) => {
 	const dispatch = useDispatch();
 	const order = useSelector(getOrder);
 
@@ -54,6 +64,15 @@ export const TotalButton = () => {
 		return (
 			<OrderButton color={"green"} onClick={() => handleButton(order.stage + 1)}>
 				{TEXT.total}
+			</OrderButton>
+		);
+	}
+
+	// stage 4
+	if (order.stage === 4) {
+		return (
+			<OrderButton color={"green"} onClick={onClickButton}>
+				{TEXT.toOrder}
 			</OrderButton>
 		);
 	}

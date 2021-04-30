@@ -19,10 +19,22 @@ export const Stages = () => {
 				dispatch(orderActions.setStage(position));
 				break;
 			case 2:
-				order.point && dispatch(orderActions.setStage(position));
+				order.city && order.point && dispatch(orderActions.setStage(position));
 				break;
 			case 3:
-				order.car && dispatch(orderActions.setStage(position));
+				order.city &&
+					order.point &&
+					order.car &&
+					dispatch(orderActions.setStage(position));
+				break;
+			case 4:
+				order.city &&
+					order.point &&
+					order.car &&
+					order.rate &&
+					order.additionally.reservedTime.from &&
+					order.additionally.reservedTime.to &&
+					dispatch(orderActions.setStage(position));
 				break;
 			default:
 				break;
@@ -37,10 +49,15 @@ export const Stages = () => {
 				return order.city && order.point ? false : true;
 			case 3:
 				return order.city && order.point && order.car ? false : true;
-
-			// TODO: will be implemented after V-04
-			// case 4:
-			//   return order.point ? false : false
+			case 4:
+				return order.city &&
+					order.point &&
+					order.car &&
+					order.rate &&
+					order.additionally.reservedTime.from &&
+					order.additionally.reservedTime.to
+					? false
+					: true;
 
 			default:
 				return true;
