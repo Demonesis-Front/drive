@@ -6,6 +6,7 @@ import {Facebook} from '@styled-icons/boxicons-logos/Facebook'
 import {Instagram} from '@styled-icons/boxicons-logos/Instagram'
 import {CloseOutline} from '@styled-icons/evaicons-outline/CloseOutline'
 import {CaretRight} from '@styled-icons/boxicons-regular/CaretRight'
+import {ShoppingCart} from '@styled-icons/typicons/ShoppingCart'
 
 import {COLORS} from 'constants/colors'
 
@@ -96,4 +97,10 @@ export const CarTypeIcon = styled.div`
   border-style: solid;
   margin-right: 8px;
   margin-bottom: 0px;
+`
+
+export const ShoppingCartIcon = styled(ShoppingCart)`
+  width: 25px;
+  height: 22px;
+  color: ${COLORS.white};
 `

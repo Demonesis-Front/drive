@@ -21,10 +21,10 @@ const initialAdditionally: AdditionallyType = {
 const initialState: OrderState = {
   data: {
     city: {
-      createdAt: 1223444,
-      updatedAt: 1231233,
-      id: '12',
-      name: "Ульяновск",
+      createdAt: null,
+      updatedAt: null,
+      id: null,
+      name: null,
       coordinates: [54.330056, 48.389127],
     },
     cities: null,
@@ -76,6 +76,7 @@ const orderSlice = createSlice({
     },
     setCar: (state, action: PayloadAction<CarDBType | null>) => {
       state.data.additionally = initialAdditionally
+      state.data.rate = null
       state.data.car = action.payload
     },
     setCars: (state, action: PayloadAction<CarDBType[]>) => {
@@ -108,6 +109,12 @@ const orderSlice = createSlice({
     setDateToFrom: (state, action: PayloadAction<MaterialUiPickersDate>) => {
       state.data.additionally.reservedTime.to = action.payload
     },
+    confirmOrder: (state, action: PayloadAction<any>) => {
+      // Start for saga and service with POST order to DB
+    },
+    setInitialData: (state) => {
+      state.data = initialState.data
+    }
   }
 })
 

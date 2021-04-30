@@ -1,29 +1,28 @@
 import {instance, API_KEY, path} from './api'
 
-const createCityConfig = (city: string) => {
+const createCityConfig = (city: string | null) => {
   return {
     params:{
       key: API_KEY,
-      q: `${city}`,
+      q: `${city ? city : ''}`,
       countrycode: 'ru'
     }
   }
 }
-const createPickupConfig = (address: string, city: string) => {
+const createPickupConfig = (address: string, city: string | null) => {
   return {
     params:{
       key: API_KEY,
-      q: `${address}, ${city}`,
+      q: `${address}, ${city ? city : ''}`,
     }
   }
 }
 
 // TODO: need to add data types 
 export const ForwardService = {
-  async getCity(city: string){
+  async getCity(city: string | null){
     const {data} = await instance.get(path.forward, createCityConfig(city))
 
-    // console.log(data.results[0].geometry)
     if(city === 'Ульяновск'){
       if(data.results[0] && data.results[0].geometry && data.results[0].geometry.lat && data.results[0].geometry.lng){
         return [data.results[1].geometry.lat, data.results[1].geometry.lng]

@@ -31,4 +31,10 @@ export const DBService = {
       
       return data.data
   },
+  async postOrder(data: any){
+      const response: AxiosResponse<any> = await instance.post(path.category, data)
+      console.log(response)
+      
+      return data.data
+  },
 }

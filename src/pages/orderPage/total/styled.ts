@@ -9,19 +9,26 @@ type ActiveType = {
 }
 
 export const TotalMobileButton = styled.div`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   display: none;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   position: fixed;
-  bottom: 100px;
-  right: 20px;
+  bottom: 120px;
+  right: 40px;
   cursor: pointer;
   background-color: ${COLORS.grey};
   color: ${COLORS.white};
   z-index: 1001;
+
+  &:hover{
+    filter: brightness(90%);
+  }
+  &:active{
+    filter: brightness(80%);
+  }
 
   @media (max-width: 1000px){
     display: flex;
@@ -142,3 +149,33 @@ export const TotalPriceTitle = styled.span`
   font-weight: 700;
   color: ${COLORS.black};
 `
+
+export const PopUpBackground = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: ${COLORS.white08};
+  z-index: 3001;
+`
+
+export const PopUpTitle = styled.div`
+  font-size: 24px;
+  font-weight: 400;
+`
+
+export const PopUpButtonsContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+`
+export const PopUpButtonsDelimiter = styled.div`
+  width: 10px;
+  height: 10px;
+`
+

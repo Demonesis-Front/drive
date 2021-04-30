@@ -1,9 +1,12 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { orderActions } from "store/order/reducer";
 import { getOrder } from "store/order/selectors";
 import { TotalButton } from "./TotalButton";
 import { TotalPrice } from "./TotalPrice";
 import { TotalDuration } from "./TotalDuration";
+import { TotalPopUp } from "./TotalPopUp";
 import {
 	TotalContainer,
 	TotalDetailContainer,
@@ -14,13 +17,30 @@ import {
 	TotalDetailTitle,
 } from "./styled";
 import { TEXT } from "constants/text";
+import { PATH } from "navigation/path";
 
 type TotalPropsType = {
 	active: boolean;
+	children?: any;
+	onClickButton?: () => void;
 };
 
-export const Total = ({ active }: TotalPropsType) => {
+export const Total = ({ active, children }: TotalPropsType) => {
+	const history = useHistory();
 	const order = useSelector(getOrder);
+	const dispatch = useDispatch();
+	const [showConfirmPopUp, setShowConfirmPopUp] = useState<boolean>(false);
+
+	const showConfirmPopUpHandler = () => setShowConfirmPopUp(true);
+	const hideConfirmPopUpHandler = () => setShowConfirmPopUp(false);
+
+	const confirmOrderHandler = () => {
+		// TODO: need to change null to data from special order selector
+		dispatch(orderActions.confirmOrder(null));
+		setShowConfirmPopUp(false);
+		// TODO: need to change id from orderStatusId or any id
+		history.push(PATH.orderById + "RM12456313123");
+	};
 
 	return (
 		<TotalMainContainer>
@@ -97,7 +117,22 @@ export const Total = ({ active }: TotalPropsType) => {
 			</TotalContainer>
 
 			{/* Button */}
-			<TotalButton />
+			{children ? (
+				children
+			) : (
+				<TotalButton
+					buttonColor={"green"}
+					buttonText={"text"}
+					onClickButton={showConfirmPopUpHandler}
+				/>
+			)}
+
+			{/* TotalPopUp */}
+			<TotalPopUp
+				show={showConfirmPopUp}
+				confirmFn={confirmOrderHandler}
+				returnFn={hideConfirmPopUpHandler}
+			/>
 		</TotalMainContainer>
 	);
 };

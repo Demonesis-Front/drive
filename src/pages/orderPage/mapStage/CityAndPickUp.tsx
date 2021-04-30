@@ -46,7 +46,7 @@ export const CityAndPickUp = () => {
 				<CityAndPickUpAutocomplete
 					id="combo-box-demo"
 					options={order.cities || []}
-					getOptionLabel={(option) => option.name}
+					getOptionLabel={(option) => option.name || ""}
 					forcePopupIcon={false}
 					value={order.city}
 					onChange={handleCityChose}
