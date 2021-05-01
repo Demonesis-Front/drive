@@ -2,7 +2,7 @@ import {put, all, call, takeLatest, delay} from 'redux-saga/effects';
 import { DBService } from 'services/main/service';
 import { ForwardService } from 'services/forward/service';
 import {orderActions} from 'store/order/reducer';
-import { CarDBType, CityDBType, PointDBType, RateDBType } from './types';
+import { CarDBType, CityDBType, OrderStatusDBType, PointDBType, RateDBType } from './types';
 import { LatLngExpression } from "leaflet";
 
 export function* orderSagas() {
@@ -10,6 +10,7 @@ export function* orderSagas() {
     takeLatest(orderActions.initMap, orderInitMapSaga),
     takeLatest(orderActions.initCar, orderInitCarSaga),
     takeLatest(orderActions.initAdditionally, orderInitAdditionallySaga),
+    takeLatest(orderActions.initTotalStage, orderInitTotalStageSaga),
   ]);
 }
 
@@ -40,7 +41,7 @@ function* orderInitMapSaga(){
     yield put(orderActions.success())
   } catch (error) {
     delay(2000)
-    yield put(orderActions.setCities(orderActions.initMap()));
+    yield put(orderActions.initMap());
   }
 }
 
@@ -58,7 +59,7 @@ function* orderInitCarSaga(){
     yield put(orderActions.success())
   } catch (error) {
     delay(2000)
-    yield put(orderActions.setCities(orderActions.initCar()));
+    yield put(orderActions.initCar());
   }
 }
 
@@ -71,6 +72,17 @@ function* orderInitAdditionallySaga(){
     yield put(orderActions.success())
   } catch (error) {
     delay(2000)
-    yield put(orderActions.setCities(orderActions.initCar()));
+    yield put(orderActions.initAdditionally());
+  }
+}
+
+function* orderInitTotalStageSaga(){
+  try {
+    yield put(orderActions.loading())
+    // Statuses
+    const  statuses: OrderStatusDBType[] = yield call(DBService.getOrderStatuses)
+    yield put(orderActions.setStatuses(statuses));
+  } catch (error) {
+    yield put(orderActions.initTotalStage())
   }
 }

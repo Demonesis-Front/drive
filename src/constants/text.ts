@@ -48,4 +48,7 @@ export const TEXT = {
   confirmOrder: 'Подтвердите заказ',
   cancel: 'Отменить',
   orderNumber: 'Заказ номер',
+  orderStatus:{
+    new: 'Ваш заказ в обработке'
+  }
 }

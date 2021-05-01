@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { orderActions } from "store/order/reducer";
-import { getOrder } from "store/order/selectors";
+import { myOrderActions } from "store/myOrder/reducer";
 import {
 	OrderPageContainer,
 	OrderPageContent,
@@ -18,29 +17,34 @@ import { MyOrderPageButton } from "./MyOrderPageButton";
 import { TotalMobileButton } from "./total/styled";
 import { ShoppingCartIcon } from "common/icons";
 import { TEXT } from "constants/text";
+import { getMyOrder } from "store/myOrder/selectors";
 
 export const MyOrderPage = () => {
 	const [showTotalOrder, setShowTotalOrder] = useState<boolean>(false);
-	const order = useSelector(getOrder);
+	const myOrder = useSelector(getMyOrder);
 	const dispatch = useDispatch();
 
 	const showTotalOrderHandler = () => setShowTotalOrder(!showTotalOrder);
 
 	useEffect(() => {
-		dispatch(orderActions.init());
-	}, [dispatch]);
+		dispatch(myOrderActions.getMyOrder());
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<OrderPageContainer>
 			<OrderPageContent>
 				<Header />
 				<OrderNavigationContainer>
-					<MyOrderNumber>{TEXT.orderNumber + " " + 123123123}</MyOrderNumber>
+					<MyOrderNumber>{TEXT.orderNumber + " " + myOrder.id}</MyOrderNumber>
 					<OrderNavigationContainerBorder />
 				</OrderNavigationContainer>
 				<StageContentContainer>
 					<TotalStage>
-						<MyOrderStatus>Ваш заказ подтверждён ;)</MyOrderStatus>
+						{myOrder.orderStatusId?.id === "5e26a191099b810b946c5d89" && (
+							<MyOrderStatus>{TEXT.orderStatus.new}</MyOrderStatus>
+						)}
 					</TotalStage>
 
 					<Total active={showTotalOrder}>

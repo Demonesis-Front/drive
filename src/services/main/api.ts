@@ -7,7 +7,9 @@ export const path = {
   city: '/city',
   point: '/point',
   rate: '/rate',
+  order: '/order',
   category: '/category',
+  statuses: '/orderStatus',
 }
 
 export const instance = axios.create({

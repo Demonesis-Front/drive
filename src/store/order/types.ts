@@ -20,9 +20,9 @@ export type CarDBType = {
     id: string,
   },
   colors: string[],
-  createdAt: number,
   id: string,
   name: string,
+  description?: string;
   number: string,
   priceMax: number,
   priceMin: number,
@@ -33,6 +33,7 @@ export type CarDBType = {
     path: string,
     size: number
   },
+  createdAt: number,
   updatedAt: string
 }
 
@@ -64,7 +65,7 @@ export type PointDBType = {
     name: string,
   },
   name: string,
-  id: number,
+  id: string,
   coordinates?: LatLngExpression
 }
 
@@ -85,6 +86,11 @@ export type CategoriesDBType = {
   id: string
   name: string
   updatedAt: number
+}
+
+export type OrderStatusDBType = {
+  name: string
+  id: string
 }
 
 export type AdditionallyType = {
@@ -114,6 +120,7 @@ export type OrderState = {
     additionally: AdditionallyType,
     rates: RateDBType[] | null,
     rate: RateDBType | null,
+    statuses: OrderStatusDBType[] | null,
   },
   loading: boolean;
 }

@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios'
-import {getCarsType, getCitiesType, getPointsType, getRatesType, getCategoriesType} from './types'
+import {getCarsType, getCitiesType, getPointsType, getRatesType, getCategoriesType, PostOrderType, getOrderStatusesType, OrderDataType} from './types'
 import {instance, path} from './api'
 
 
@@ -31,9 +31,18 @@ export const DBService = {
       
       return data.data
   },
-  async postOrder(data: any){
-      const response: AxiosResponse<any> = await instance.post(path.category, data)
-      console.log(response)
+  async getOrderStatuses(){
+      const {data}: AxiosResponse<getOrderStatusesType> = await instance.get(path.statuses)
+      
+      return data.data
+  },
+  async postOrder(postData: OrderDataType | null){
+      const {data}: AxiosResponse<PostOrderType> = await instance.post(path.order, postData)
+      
+      return data.data
+  },
+  async getMyOrder(id: string){
+      const {data}: AxiosResponse<any> = await instance.get(path.order + '/' + id)
       
       return data.data
   },

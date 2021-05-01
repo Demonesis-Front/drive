@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType, AdditionallyType} from './types'
+import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType, AdditionallyType, OrderStatusDBType} from './types'
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
+import { OrderDataType } from 'services/main/types';
 
 
 
@@ -36,7 +37,8 @@ const initialState: OrderState = {
     categories: null,
     additionally: initialAdditionally,
     rates: null,
-    rate: null
+    rate: null,
+    statuses: null,
   },
   loading: true,
 }
@@ -48,6 +50,7 @@ const orderSlice = createSlice({
     initMap: (state) => state,
     initCar: (state) => state,
     initAdditionally: (state) => state,
+    initTotalStage: (state) => state,
     loading: (state) => {
       state.loading = true
     },
@@ -109,11 +112,15 @@ const orderSlice = createSlice({
     setDateToFrom: (state, action: PayloadAction<MaterialUiPickersDate>) => {
       state.data.additionally.reservedTime.to = action.payload
     },
-    confirmOrder: (state, action: PayloadAction<any>) => {
+    confirmOrder: (state, action: PayloadAction<OrderDataType>) => {
       // Start for saga and service with POST order to DB
+
     },
     setInitialData: (state) => {
       state.data = initialState.data
+    },
+    setStatuses: (state,  action: PayloadAction<OrderStatusDBType[]>) => {
+      state.data.statuses = action.payload
     }
   }
 })

@@ -29,7 +29,9 @@ export const OrderPage = () => {
 
 	useEffect(() => {
 		dispatch(orderActions.init());
-	}, [dispatch]);
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
 	return (
 		<OrderPageContainer>
