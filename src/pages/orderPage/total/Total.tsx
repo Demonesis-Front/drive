@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { orderActions } from "store/order/reducer";
-import { getOrder } from "store/order/selectors";
+import { getOrder, getReadyOrder } from "store/order/selectors";
+import { getMyOrder } from "store/myOrder/selectors";
 import { TotalButton } from "./TotalButton";
 import { TotalPrice } from "./TotalPrice";
 import { TotalDuration } from "./TotalDuration";
@@ -18,6 +19,7 @@ import {
 } from "./styled";
 import { TEXT } from "constants/text";
 import { PATH } from "navigation/path";
+import { myOrderActions } from "store/myOrder/reducer";
 
 type TotalPropsType = {
 	active: boolean;
@@ -28,6 +30,8 @@ type TotalPropsType = {
 export const Total = ({ active, children }: TotalPropsType) => {
 	const history = useHistory();
 	const order = useSelector(getOrder);
+	const myOrder = useSelector(getMyOrder);
+	const readyOrder = useSelector(getReadyOrder);
 	const dispatch = useDispatch();
 	const [showConfirmPopUp, setShowConfirmPopUp] = useState<boolean>(false);
 
@@ -35,12 +39,22 @@ export const Total = ({ active, children }: TotalPropsType) => {
 	const hideConfirmPopUpHandler = () => setShowConfirmPopUp(false);
 
 	const confirmOrderHandler = () => {
-		// TODO: need to change null to data from special order selector
-		dispatch(orderActions.confirmOrder(null));
+		console.log(readyOrder);
+
+		if (readyOrder) {
+			dispatch(myOrderActions.postReadyOrder(readyOrder));
+		}
 		setShowConfirmPopUp(false);
-		// TODO: need to change id from orderStatusId or any id
-		history.push(PATH.orderById + "RM12456313123");
 	};
+
+	useEffect(() => {
+		// TODO: need to change id from orderStatusId or any id
+		if (myOrder.id) {
+			history.push(PATH.order + "/" + myOrder.id);
+		}
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [myOrder.id]);
 
 	return (
 		<TotalMainContainer>
