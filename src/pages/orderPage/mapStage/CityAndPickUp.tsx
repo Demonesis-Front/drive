@@ -48,7 +48,7 @@ export const CityAndPickUp = () => {
 					options={order.cities || []}
 					getOptionLabel={(option) => option.name || ""}
 					forcePopupIcon={false}
-					value={order.city}
+					value={order.city.name ? order.city : null}
 					onChange={handleCityChose}
 					renderInput={(params) => (
 						<TextField {...params} placeholder={TEXT.choseCity} variant="standard" />
