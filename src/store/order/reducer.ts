@@ -2,8 +2,16 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {OrderState, CityDBType, CarDBType, PointDBType, RateDBType, AdditionallyType, OrderStatusDBType} from './types'
 import { MaterialUiPickersDate } from "@material-ui/pickers/typings/date";
 import { OrderDataType } from 'services/main/types';
+import { LatLngExpression } from "leaflet";
 
 
+
+const initialCity: CityDBType = {
+  createdAt: null,
+  updatedAt: null,
+  id: null,
+  name: null,
+}
 
 const initialAdditionally: AdditionallyType = {
   color: null,
@@ -61,7 +69,19 @@ const orderSlice = createSlice({
       state.data.car = null
       state.data.point = null
       state.data.additionally = initialAdditionally
-      state.data.city = action.payload
+
+      if(!action.payload){
+        state.data.city = initialCity
+      }
+
+      if(action.payload){
+        state.data.city = action.payload
+      }
+    },
+    setUserLocation: (state, action: PayloadAction<LatLngExpression>) => {
+      console.log(action.payload)
+      
+      state.data.city.coordinates = action.payload
     },
     setCities: (state, action: PayloadAction<any | null>) => {
       state.data.cities = action.payload

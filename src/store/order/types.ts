@@ -109,7 +109,7 @@ export type AdditionallyType = {
 
 export type OrderState = {
   data: {
-    city: CityDBType | null,
+    city: CityDBType,
     cities: CityDBType[] | null,
     point: PointDBType | null,
     points: PointDBType[] | null,

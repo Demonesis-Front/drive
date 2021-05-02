@@ -7,6 +7,7 @@ import { LatLngExpression } from "leaflet";
 
 export function* orderSagas() {
   yield all([
+    takeLatest(orderActions.initMap, orderInitUserLocation),
     takeLatest(orderActions.initMap, orderInitMapSaga),
     takeLatest(orderActions.initCar, orderInitCarSaga),
     takeLatest(orderActions.initAdditionally, orderInitAdditionallySaga),
@@ -42,6 +43,25 @@ function* orderInitMapSaga(){
   } catch (error) {
     delay(2000)
     yield put(orderActions.initMap());
+  }
+}
+
+const getUserCoords = () => new Promise((resolve,reject) => {
+  navigator.geolocation.getCurrentPosition(
+    location => resolve(location),
+    error => reject(error)
+  )
+}) 
+
+function* orderInitUserLocation(){
+  try {
+    if(navigator){
+      const location: GeolocationPosition = yield call(getUserCoords)
+      const coordinates: LatLngExpression = [location.coords.latitude, location.coords.longitude]
+      
+      yield put(orderActions.setUserLocation(coordinates))
+    }
+  } catch (error) {
   }
 }
 
