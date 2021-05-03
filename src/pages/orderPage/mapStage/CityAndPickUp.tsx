@@ -23,20 +23,13 @@ export const CityAndPickUp = () => {
 		value: CityDBType | null
 	) => {
 		dispatch(orderActions.setCity(value));
+		dispatch(orderActions.getCityPoints());
 	};
 	const handlePickUpChose = (
 		event: React.ChangeEvent<{}>,
 		value: PointDBType | null
 	) => {
-		if (!value) {
-			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPoint(null));
-		}
-
-		if (value) {
-			dispatch(orderActions.setCar(null));
-			dispatch(orderActions.setPoint(value));
-		}
+		dispatch(orderActions.setPoint(value));
 	};
 
 	return (

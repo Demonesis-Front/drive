@@ -10,5 +10,5 @@ export const path ={
 
 export const instance = axios.create({
   baseURL: serviceUrl,
-  timeout: 2000,
+  timeout: 1100,
 })

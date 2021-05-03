@@ -79,8 +79,6 @@ const orderSlice = createSlice({
       }
     },
     setUserLocation: (state, action: PayloadAction<LatLngExpression>) => {
-      console.log(action.payload)
-      
       state.data.city.coordinates = action.payload
     },
     setCities: (state, action: PayloadAction<any | null>) => {
@@ -91,6 +89,7 @@ const orderSlice = createSlice({
       state.data.additionally = initialAdditionally
       state.data.point = action.payload
     },
+    getCityPoints: (state) => state,
     setPoints: (state, action: PayloadAction<PointDBType[] | null>) => {
       state.data.points = action.payload
     },
