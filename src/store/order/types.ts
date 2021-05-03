@@ -107,8 +107,7 @@ export type AdditionallyType = {
   }
 }
 
-export type OrderState = {
-  data: {
+export type OrderStateDataType = {
     city: CityDBType,
     cities: CityDBType[] | null,
     point: PointDBType | null,
@@ -121,7 +120,10 @@ export type OrderState = {
     rates: RateDBType[] | null,
     rate: RateDBType | null,
     statuses: OrderStatusDBType[] | null,
-  },
+}
+
+export type OrderState = {
+  data: OrderStateDataType,
   loading: boolean;
 }
 

@@ -2,6 +2,12 @@ import { RootState } from "store/store";
 import {OrderDataType} from 'services/main/types'
 
 export const getOrder = (state: RootState) => state.order.data
+// export const getPointsByCity = (state: RootState) => {
+//   const points = state.order.data.points
+//   if(points){
+//     return Object.values(points).filter(point => point.cityId.id === state.order.data.city.id)
+//   }
+// }
 export const getOrderStatus = (state: RootState) => state.order.loading
 export const getReadyOrder = (state: RootState) => {
   const order = state.order.data
